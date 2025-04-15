@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	  <NoWarn>CS8600</NoWarn>
@@ -18,7 +18,7 @@
 	<Icon>icon.png</Icon>
 	<PackageIcon>icon.png</PackageIcon>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<Version>1.0.0</Version>
+	<Version>1.0.1</Version>
 	<IsPackable>true</IsPackable>
 	<AotAssemblies>true</AotAssemblies>
   </PropertyGroup>
