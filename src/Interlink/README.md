@@ -2,8 +2,6 @@
 
 **Interlink** is a lightweight and modern mediator library for .NET, designed to decouple your code through request/response and notification patterns. Built with simplicity and performance in mind, it helps streamline communication between components while maintaining a clean architecture.
 
-![Interlink Logo](https://your-image-hosting-url.com/interlink-logo.png) <!-- Replace with actual logo URL -->
-
 ---
 
 ## ✨ Features
