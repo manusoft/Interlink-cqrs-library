@@ -30,7 +30,7 @@ You can install Interlink via NuGet Package Manager or .NET CLI.
 dotnet add package Interlink
 ```
 
-### 1. Register Interlink in your `Startup.cs` or `Program.cs`
+### 2. Register Interlink in your `Startup.cs` or `Program.cs`
 ```csharp
 using Interlink;
 
@@ -38,7 +38,7 @@ builder.Services.AddInterlink();
 
 ```
 
-### 2. Define a Request and Response
+### 3. Define a Request and Response
 ```csharp
 public class GetAllPets
 {
