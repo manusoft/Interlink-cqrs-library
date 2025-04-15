@@ -1,3 +1,4 @@
+![Static Badge](https://img.shields.io/badge/Interlink-red) ![NuGet Version](https://img.shields.io/nuget/v/Interlink)  ![NuGet Downloads](https://img.shields.io/nuget/dt/Interlink)
 # Interlink
 
 **Interlink** is a lightweight and modern mediator library for .NET, designed to decouple your code through request/response and notification patterns. Built with simplicity and performance in mind, it helps streamline communication between components while maintaining a clean architecture.
