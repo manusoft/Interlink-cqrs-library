@@ -4,6 +4,7 @@
     <TargetFrameworks>net9.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	  <NoWarn>CS8600</NoWarn>
 	<AssemblyName>Interlink</AssemblyName>
 	<RootNamespace>Interlink</RootNamespace>
 	<PackageId>Interlink</PackageId>
@@ -11,8 +12,8 @@
 	<Copyright>Copyright © 2025 ManuHub</Copyright>
 	<Authors>Manojbabu</Authors>
 	<PackageTags>mediator cqrs request response notification dotnet csharp interlink architecture dependency-injection clean-architecture lightweight</PackageTags>
-	<PackageProjectUrl>https://github.com/manusoft/ytdlp-executable-library</PackageProjectUrl>
-	<RepositoryUrl>https://github.com/yt-dlp/yt-dlp</RepositoryUrl>
+	<PackageProjectUrl>https://github.com/manusoft/Interlink-cqrs-library</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/manusoft/Interlink-cqrs-library</RepositoryUrl>
 	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	<Icon>icon.png</Icon>
 	<PackageIcon>icon.png</PackageIcon>
@@ -24,6 +25,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<Content Include="icon.png" Pack="true" PackagePath="" />
+	<Content Include="README.md" Pack="true" PackagePath="" />
+	<Content Include="LICENSE.txt" Pack="true" PackagePath="" />
   </ItemGroup>
 
 </Project>
