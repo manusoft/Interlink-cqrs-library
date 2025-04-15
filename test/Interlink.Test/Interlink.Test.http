@@ -1,0 +1,6 @@
+@Interlink.Test_HostAddress = http://localhost:5268
+
+GET {{Interlink.Test_HostAddress}}/api/pet/
+Accept: application/json
+
+###

@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<AssemblyName>Interlink</AssemblyName>
+	<RootNamespace>Interlink</RootNamespace>
+	<PackageId>Interlink</PackageId>
+	<Description>A lightweight and minimal mediator library for .NET. Interlink helps you decouple your application using request/response and notification patterns with simple, clean code.</Description>
+	<Copyright>Copyright © 2025 ManuHub</Copyright>
+	<Authors>Manojbabu</Authors>
+	<PackageTags>mediator cqrs request response notification dotnet csharp interlink architecture dependency-injection clean-architecture lightweight</PackageTags>
+	<PackageProjectUrl>https://github.com/manusoft/ytdlp-executable-library</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/yt-dlp/yt-dlp</RepositoryUrl>
+	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+	<Icon>icon.png</Icon>
+	<PackageIcon>icon.png</PackageIcon>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
+	<Version>1.0.0</Version>
+	<IsPackable>true</IsPackable>
+	<AotAssemblies>true</AotAssemblies>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.4" />
+  </ItemGroup>
+
+</Project>
