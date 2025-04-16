@@ -1,29 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Interlink.Test.Data;
+using Interlink.Test.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Interlink.Test.Features;
 
 public class GetAllPets
 {
-    public record Query : IRequest<List<string>>;
+    public record Query : IRequest<List<Pet>>;
 
-    public class Handler : IRequestHandler<Query, List<string>>
+    public class Handler(AppDbContext context) : IRequestHandler<Query, List<Pet>>
     {
-        public Task<List<string>> Handle(Query request, CancellationToken cancellationToken)
+        public async Task<List<Pet>> Handle(Query request, CancellationToken cancellationToken)
         {
-            var pets = new List<string> { "Dog", "Cat", "Fish" };
-            return Task.FromResult(pets);
+            var pets = await context.Pets.ToListAsync();
+            return pets;
         }
-    }
-}
-
-[ApiController]
-[Route("api/[controller]")]
-public class PetController(ISender sender) : ControllerBase
-{
-    [HttpGet]
-    public async Task<IActionResult> GetAllPets(CancellationToken cancellationToken)
-    {
-        var pets = await sender.Send(new GetAllPets.Query(), cancellationToken);
-        return Ok(pets);
     }
 }
