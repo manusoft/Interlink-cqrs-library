@@ -1,4 +1,5 @@
-﻿using Interlink.Test.Data;
+﻿using Interlink.Abstractions;
+using Interlink.Test.Data;
 using Interlink.Test.Entities;
 
 namespace Interlink.Test.Features;

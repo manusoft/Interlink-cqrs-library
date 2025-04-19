@@ -1,4 +1,6 @@
-﻿namespace Interlink.Test.Notification;
+﻿using Interlink.Abstractions;
+
+namespace Interlink.Test.Notification;
 
 public class SendWelcomeEmail : INotificationHandler<UserCreated>
 {
