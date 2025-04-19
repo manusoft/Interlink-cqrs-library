@@ -9,7 +9,7 @@ POST {{Interlink.Test_HostAddress}}/api/pet
 Content-Type: application/json
 
 {
-  "name": "Sameer",
+  "name": "Azragg",
   "species": "dog"
 }
 
@@ -19,14 +19,14 @@ PUT {{Interlink.Test_HostAddress}}/api/pet
 Content-Type: application/json
 
 {
-  "id": 2,
+  "id": 4,
   "name": "Azrag",
   "species": "dog"
 }
 
 ###
 
-@id=4
+@id=5
 DELETE {{Interlink.Test_HostAddress}}/api/pet/{{id}}
 
 ###

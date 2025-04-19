@@ -1,4 +1,4 @@
-using Interlink;
+using Interlink.Core;
 using Interlink.Test.Data;
 using Microsoft.EntityFrameworkCore;
 

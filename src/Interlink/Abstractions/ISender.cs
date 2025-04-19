@@ -1,4 +1,4 @@
-﻿namespace Interlink;
+﻿namespace Interlink.Abstractions;
 
 public interface ISender
 {
