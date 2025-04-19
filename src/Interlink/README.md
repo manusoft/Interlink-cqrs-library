@@ -18,7 +18,7 @@
 
 ---
 
-# 💡 Why Interlink?
+## 💡 Why Interlink?
 - Clean, intuitive API
 - No bloat – just powerful mediation
 - Perfect for CQRS, Clean Architecture, Modular Design
@@ -26,7 +26,7 @@
 
 ---
 
-# 📦 Installation
+## 📦 Installation
 Install Interlink via NuGet:
 ```bash
 dotnet add package Interlink
@@ -43,8 +43,8 @@ You can optionally pass an Assembly:
 builder.Services.AddInterlink(typeof(MyHandler).Assembly);
 ```
 
-# 📨 Request/Response Pattern
-## 1. Define a request:
+## 📨 Request/Response Pattern
+### 1. Define a request:
 ```csharp
 public class GetAllPets
 {
@@ -61,7 +61,7 @@ public class GetAllPets
 }
 ```
 
-## 2. Inject and use ISender:
+### 2. Inject and use ISender:
 ```csharp
 [ApiController]
 [Route("api/[controller]")]
@@ -77,15 +77,15 @@ public class PetController(ISender sender) : ControllerBase
 ```
 ---
 
-# 📣 Notifications (One-to-Many)
-## 1. Define a notification:
+## 📣 Notifications (One-to-Many)
+### 1. Define a notification:
 ```csharp
 public class UserCreated(string userName) : INotification
 {
     public string UserName { get; } = userName;
 }
 ```
-## 2. Create one or more handlers:
+### 2. Create one or more handlers:
 ```csharp
 public class SendWelcomeEmail : INotificationHandler<UserCreated>
 {
@@ -97,7 +97,7 @@ public class SendWelcomeEmail : INotificationHandler<UserCreated>
 }
 ```
 
-## 3. Publish with IPublisher:
+### 3. Publish with IPublisher:
 ```csharp
 public class AccountService(IPublisher publisher)
 {
@@ -110,9 +110,10 @@ public class AccountService(IPublisher publisher)
 ```
 ---
 
-# 🧬 Pipeline Behaviors
+## 🧬 Pipeline Behaviors
 Useful for logging, validation, performance monitoring, etc.
-## 1. Define a behavior:
+
+### 1. Define a behavior:
 ```csharp
 public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
@@ -130,7 +131,7 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 Pipeline behaviors are automatically registered when you call AddInterlink().
 
 ---
-# 📦 API Overview
+## 📦 API Overview
 
 ```IRequest<TResponse>```
 
@@ -197,7 +198,7 @@ public interface IPipelineBehavior<TRequest, TResponse>
 ```
 ----
 
-# 🔍 Example Use Case
+## 🔍 Example Use Case
 
 - CQRS: Use IRequest<TResponse> for queries/commands
 - Event-Driven: Use INotification for broadcasting domain events
@@ -205,27 +206,23 @@ public interface IPipelineBehavior<TRequest, TResponse>
 
 ----
 
-# 🚀 Roadmap
+## 🚀 Roadmap
 
-## ✅ v1.0.0 — Core Mediator Basics (Released)
+### ✅ v1.0.0 — Core Mediator Basics (Released)
 - Basic `IRequest<TResponse>` and `IRequestHandler<TRequest, TResponse>`
 - `ISender` for sending requests
 - `AddInterlink()` for automatic DI registration
 - Clean, lightweight design
 - Only .NET 9 support
 
------
-
-## ✅ v1.0.1 — Core Mediator Basics (Released)
+### ✅ v1.0.1 — Core Mediator Basics (Released)
 - Basic `IRequest<TResponse>` and `IRequestHandler<TRequest, TResponse>`
 - `ISender` for sending requests
 - `AddInterlink()` for automatic DI registration
 - Clean, lightweight design
 - .NET 8+ support
 
----
-
-## ✅ v1.1.0 — Notifications & Pipelines (Released)
+### ✅ v1.1.0 — Notifications & Pipelines (Released)
 - `INotification` and `INotificationHandler<TNotification>`
 - `IPublisher` for event broadcasting
 - `IPipelineBehavior<TRequest, TResponse>` support
@@ -233,39 +230,29 @@ public interface IPipelineBehavior<TRequest, TResponse>
 - Updated documentation and examples
 - .NET 8+ support
 
----
-
-## 🔜 v1.2.0 — Pre/Post Processors (Planned)
+### 🔜 v1.2.0 — Pre/Post Processors (Planned)
 - `IRequestPreProcessor<TRequest>` interface
 - `IRequestPostProcessor<TRequest, TResponse>` interface
 - Pre and post hooks for request lifecycle
 - Optional unit-of-work behaviors
 
----
-
-## 🔧 v1.3.0 — Performance & Customization
+### 🔧 v1.3.0 — Performance & Customization
 - Handler resolution caching (delegate-based)
 - Custom service factory injection support
 - Pipeline ordering via attributes or configuration
 - Assembly scanning filters by namespace or attribute
 
----
-
-## 🌐 v1.4.0 — Extensions
+### 🌐 v1.4.0 — Extensions
 - `Interlink.Extensions.Logging` — built-in logging behavior
 - `Interlink.Extensions.Validation` — integration with FluentValidation
 - `Interlink.AspNetCore` — model binding & filters for ASP.NET Core
 
----
-
-## 🧪 v1.5.0 — Developer Experience
+### 🧪 v1.5.0 — Developer Experience
 - Source generator / Roslyn analyzer for missing handler detection
 - Code snippets and templates for common patterns
 - Custom exception types (e.g., `HandlerNotFoundException`)
 
----
-
-## 📅 Future Ideas
+### 📅 Future Ideas
 - Request cancellation and timeout behaviors
 - Metrics collection and tracing support
 - Dynamic or externalized pipeline config (e.g., JSON-based)
@@ -275,7 +262,7 @@ public interface IPipelineBehavior<TRequest, TResponse>
 _Stay tuned for more updates! Contributions and suggestions are welcome._ ✨
 ---
 
-# 📜 License
+## 📜 License
 MIT License © ManuHub
 
 ---
