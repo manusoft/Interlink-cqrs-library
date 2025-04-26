@@ -1,4 +1,4 @@
-﻿namespace Interlink.Test.Entities;
+﻿namespace Interlink.Sample.Entities;
 
 public class Pet
 {

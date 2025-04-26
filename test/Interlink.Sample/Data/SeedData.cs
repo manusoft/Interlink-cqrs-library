@@ -1,7 +1,7 @@
-﻿using Interlink.Test.Entities;
+﻿using Interlink.Sample.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Interlink.Test.Data;
+namespace Interlink.Sample.Data;
 
 public class SeedData
 {

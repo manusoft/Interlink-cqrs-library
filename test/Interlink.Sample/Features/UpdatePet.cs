@@ -1,8 +1,8 @@
-﻿using Interlink.Test.Data;
-using Interlink.Test.Entities;
-using Interlink.Test.Exceptions;
+﻿using Interlink.Sample.Data;
+using Interlink.Sample.Entities;
+using Interlink.Sample.Exceptions;
 
-namespace Interlink.Test.Features;
+namespace Interlink.Sample.Features;
 
 public class UpdatePet
 {

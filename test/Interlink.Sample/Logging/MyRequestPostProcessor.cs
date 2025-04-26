@@ -1,7 +1,7 @@
-﻿using Interlink.Test.Entities;
-using Interlink.Test.Features;
+﻿using Interlink.Sample.Entities;
+using Interlink.Sample.Features;
 
-namespace Interlink.Test.Logging;
+namespace Interlink.Sample.Logging;
 
 public class MyRequestPostProcessor : IRequestPostProcessor<GetAllPets.Query, List<Pet>>
 {

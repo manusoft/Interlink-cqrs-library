@@ -1,0 +1,32 @@
+@Interlink.Sample_HostAddress = https://localhost:7219
+
+GET {{Interlink.Sample_HostAddress}}/api/pet/
+Accept: application/json
+
+###
+
+POST {{Interlink.Sample_HostAddress}}/api/pet
+Content-Type: application/json
+
+{
+  "name": "Azragg",
+  "species": "dog"
+}
+
+###
+
+PUT {{Interlink.Sample_HostAddress}}/api/pet
+Content-Type: application/json
+
+{
+  "id": 4,
+  "name": "Azrag",
+  "species": "dog"
+}
+
+###
+
+@id=5
+DELETE {{Interlink.Sample_HostAddress}}/api/pet/{{id}}
+
+###

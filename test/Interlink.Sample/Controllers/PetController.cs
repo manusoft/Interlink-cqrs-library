@@ -1,7 +1,7 @@
-﻿using Interlink.Test.Features;
+﻿using Interlink.Sample.Features;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Interlink.Test.Controllers;
+namespace Interlink.Sample.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

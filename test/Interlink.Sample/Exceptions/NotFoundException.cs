@@ -1,4 +1,4 @@
-﻿namespace Interlink.Test.Exceptions;
+﻿namespace Interlink.Sample.Exceptions;
 
 // Added NotFoundException class  
 public class NotFoundException : Exception

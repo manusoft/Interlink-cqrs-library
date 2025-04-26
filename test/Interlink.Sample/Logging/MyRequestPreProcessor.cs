@@ -1,6 +1,6 @@
-﻿using Interlink.Test.Features;
+﻿using Interlink.Sample.Features;
 
-namespace Interlink.Test.Logging;
+namespace Interlink.Sample.Logging;
 
 public class MyRequestPreProcessor : IRequestPreProcessor<GetAllPets.Query>
 {
