@@ -284,13 +284,13 @@ public interface IRequestPostProcessor<TRequest, TResponse>
 - Updated documentation and examples
 - .NET 8+ support
 
-### 🔜 v1.2.0 — Pre/Post Processors (Released)
+### ✅ v1.2.0 — Pre/Post Processors (Released)
 - `IRequestPreProcessor<TRequest>` interface
 - `IRequestPostProcessor<TRequest, TResponse>` interface
 - Pre and post hooks for request lifecycle
 - Optional unit-of-work behaviors
 
-### 🔧 v1.3.0 — Performance & Customization
+### 🔜 v1.3.0 — Performance & Customization
 - Handler resolution caching (delegate-based)
 - Custom service factory injection support
 - Pipeline ordering via attributes or configuration
