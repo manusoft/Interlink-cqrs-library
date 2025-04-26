@@ -1,9 +1,8 @@
-﻿using Interlink.Abstractions;
-using Interlink.Test.Data;
-using Interlink.Test.Entities;
+﻿using Interlink.Sample.Data;
+using Interlink.Sample.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Interlink.Test.Features;
+namespace Interlink.Sample.Features;
 
 public class GetAllPets
 {

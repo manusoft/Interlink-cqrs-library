@@ -1,6 +1,4 @@
-﻿using Interlink.Abstractions;
-
-namespace Interlink.Test.Notification;
+﻿namespace Interlink.Sample.Notification;
 
 public class UserCreated(string userName) : INotification
 {

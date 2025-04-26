@@ -1,8 +1,7 @@
-﻿using Interlink.Abstractions;
-using Interlink.Test.Data;
-using Interlink.Test.Entities;
+﻿using Interlink.Sample.Data;
+using Interlink.Sample.Entities;
 
-namespace Interlink.Test.Features;
+namespace Interlink.Sample.Features;
 
 public class CreatePet
 {
@@ -19,3 +18,4 @@ public class CreatePet
         }
     }
 }
+

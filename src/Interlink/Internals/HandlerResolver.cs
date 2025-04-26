@@ -1,4 +1,4 @@
-﻿namespace Interlink.Internals;
+﻿namespace Interlink;
 
 internal static class HandlerResolver
 {

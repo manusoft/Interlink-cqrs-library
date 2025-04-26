@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{02EA681E-C7D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{32BDB5D1-E526-4A17-9261-7738919EBDD8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interlink.Test", "test\Interlink.Test\Interlink.Test.csproj", "{8591F93D-0270-49B8-AD8D-B24301BB5301}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Interlink.Sample", "test\Interlink.Sample\Interlink.Sample.csproj", "{8591F93D-0270-49B8-AD8D-B24301BB5301}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

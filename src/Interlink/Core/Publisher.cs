@@ -1,7 +1,6 @@
-﻿using Interlink.Abstractions;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Interlink.Core;
+namespace Interlink;
 
 internal class Publisher(IServiceProvider provider) : IPublisher
 {

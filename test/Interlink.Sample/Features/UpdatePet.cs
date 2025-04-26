@@ -1,13 +1,12 @@
-﻿using Interlink.Abstractions;
-using Interlink.Test.Data;
-using Interlink.Test.Entities;
-using Interlink.Test.Exceptions;
+﻿using Interlink.Sample.Data;
+using Interlink.Sample.Entities;
+using Interlink.Sample.Exceptions;
 
-namespace Interlink.Test.Features;
+namespace Interlink.Sample.Features;
 
-public class DeletePet
+public class UpdatePet
 {
-    public record Command(int Id) : IRequest<Pet>;
+    public record Command(int Id, string Name, string Species) : IRequest<Pet>;
     public class Handler(AppDbContext context) : IRequestHandler<Command, Pet>
     {
         public async Task<Pet> Handle(Command request, CancellationToken cancellationToken)
@@ -17,7 +16,8 @@ public class DeletePet
             {
                 throw new NotFoundException(nameof(Pet), request.Id);
             }
-            context.Pets.Remove(pet);
+            pet.Name = request.Name;
+            pet.Species = request.Species;
             await context.SaveChangesAsync(cancellationToken);
             return pet;
         }

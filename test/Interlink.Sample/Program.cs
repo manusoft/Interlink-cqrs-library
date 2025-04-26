@@ -1,5 +1,5 @@
-using Interlink.Core;
-using Interlink.Test.Data;
+using Interlink;
+using Interlink.Sample.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +13,13 @@ builder.Services.AddOpenApi();
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("PetsDb"));
 
+builder.Services.AddLogging();
+
+//builder.Services.AddInterlink(typeof(Program).Assembly);
+//builder.Services.AddInterlink(Assembly.GetExecutingAssembly());
+
 builder.Services.AddInterlink();
+builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 
 var app = builder.Build();
 
