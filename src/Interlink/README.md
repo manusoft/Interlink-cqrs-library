@@ -14,7 +14,7 @@
 - 🔄 Decouples logic using handlers
 - 🧩 Easy registration with `AddInterlink()`
 - 🚀 Lightweight, fast, and no external dependencies
-- 🔄 Pre and Post Processors for enhanced lifecycle control (v1.2.0)
+- 🔄 Pre and Post Processors for enhanced lifecycle control
 - ✅ Compatible with .NET 8 and .NET 9
 
 ---
