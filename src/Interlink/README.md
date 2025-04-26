@@ -130,17 +130,49 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 ```
 
 Pipeline behaviors are automatically registered when you call AddInterlink().
+You can manually register like:
+
+```csharp
+builder.Services.AddInterlink();
+builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+```
+---
+
+## 🔄 Pre and Post Processor
+
+### 1. Define a Pre and Post Processors:
+```csharp
+public class MyRequestPreProcessor : IRequestPreProcessor<GetAllPets.Query>
+{
+    public Task Process(GetAllPets.Query request, CancellationToken cancellationToken)
+    {
+        Console.WriteLine("[PreProcessor] Processing GetAllPets request...");
+        return Task.CompletedTask;
+    }
+}
+
+public class MyRequestPostProcessor : IRequestPostProcessor<GetAllPets.Query, List<Pet>>
+{
+    public Task Process(GetAllPets.Query request, List<Pet> response, CancellationToken cancellationToken)
+    {
+        Console.WriteLine("[PostProcessor] Processing GetAllPets response...");
+        return Task.CompletedTask;
+    }
+}
+```
+Pre and Post Processors are automatically registered when you call AddInterlink().
 
 ---
+
 ## 📦 API Overview
 
-```IRequest<TResponse>```
+### ```IRequest<TResponse>```
 
 ```csharp
 public interface IRequest<TResponse> { }
 ```
 
-```IRequestHandler<TRequest, TResponse>```
+### ```IRequestHandler<TRequest, TResponse>```
 
 ```csharp
 public interface IRequestHandler<TRequest, TResponse>
@@ -150,13 +182,13 @@ public interface IRequestHandler<TRequest, TResponse>
 }
 ```
 
-```INotification```
+### ```INotification```
 
 ```csharp
 public interface INotification { }
 ```
 
-```INotificationHandler<TNotification>```
+### ```INotificationHandler<TNotification>```
 
 ```csharp
 public interface INotificationHandler<TNotification>
@@ -167,7 +199,7 @@ public interface INotificationHandler<TNotification>
 ```
 
 
-```ISender```
+### ```ISender```
 
 ```csharp
 public interface ISender
@@ -176,7 +208,7 @@ public interface ISender
 }
 ```
 
-```IPublisher```
+### ```IPublisher```
 
 ```csharp
 public interface IPublisher
@@ -186,7 +218,7 @@ public interface IPublisher
 }
 ```
 
-```IPipelineBehavior<TRequest, TResponse>```
+### ```IPipelineBehavior<TRequest, TResponse>```
 
 ```csharp
 public delegate Task<TResponse> RequestHandlerDelegate<TResponse>();
@@ -197,6 +229,25 @@ public interface IPipelineBehavior<TRequest, TResponse>
     Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next);
 }
 ```
+
+### ```IRequestPreProcessor<TRequest>```
+
+```csharp
+public interface IRequestPreProcessor<TRequest>
+{
+    Task Process(TRequest request, CancellationToken cancellationToken);
+}
+```
+
+### ```IRequestPostProcessor<TRequest, TResponse>```
+
+```csharp
+public interface IRequestPostProcessor<TRequest, TResponse>
+{
+    Task Process(TRequest request, TResponse response, CancellationToken cancellationToken);
+}
+```
+
 ----
 
 ## 🔍 Example Use Case
