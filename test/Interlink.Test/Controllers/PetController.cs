@@ -1,5 +1,4 @@
-﻿using Interlink.Abstractions;
-using Interlink.Test.Features;
+﻿using Interlink.Test.Features;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Interlink.Test.Controllers;

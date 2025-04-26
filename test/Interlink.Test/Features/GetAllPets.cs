@@ -1,5 +1,4 @@
-﻿using Interlink.Abstractions;
-using Interlink.Test.Data;
+﻿using Interlink.Test.Data;
 using Interlink.Test.Entities;
 using Microsoft.EntityFrameworkCore;
 

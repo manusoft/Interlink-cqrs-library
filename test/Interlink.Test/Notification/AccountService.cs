@@ -1,6 +1,4 @@
-﻿using Interlink.Abstractions;
-
-namespace Interlink.Test.Notification;
+﻿namespace Interlink.Test.Notification;
 
 public class AccountService(IPublisher publisher)
 {
