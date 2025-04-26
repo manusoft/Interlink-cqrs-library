@@ -3,8 +3,17 @@ using System.Reflection;
 
 namespace Interlink;
 
+/// <summary>
+/// Provides extension methods for registering Interlink services in an <see cref="IServiceCollection"/>.
+/// </summary>
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Adds Interlink services to the specified <see cref="IServiceCollection"/>.
+    /// </summary>
+    /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>
+    /// <param name="assemblies">The assemblies to scan for handlers and behaviors. If not provided, the calling assembly is used.</param>
+    /// <returns>The updated <see cref="IServiceCollection"/>.</returns>
     public static IServiceCollection AddInterlink(this IServiceCollection services, params Assembly[] assemblies)
     {
         if (assemblies == null || assemblies.Length == 0)
