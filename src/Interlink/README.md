@@ -14,6 +14,7 @@
 - 🔄 Decouples logic using handlers
 - 🧩 Easy registration with `AddInterlink()`
 - 🚀 Lightweight, fast, and no external dependencies
+- 🔄 Pre and Post Processors for enhanced lifecycle control (v1.2.0)
 - ✅ Compatible with .NET 8 and .NET 9
 
 ---
@@ -200,9 +201,9 @@ public interface IPipelineBehavior<TRequest, TResponse>
 
 ## 🔍 Example Use Case
 
-- CQRS: Use IRequest<TResponse> for queries/commands
-- Event-Driven: Use INotification for broadcasting domain events
-- Middleware-style behaviors: Logging, validation, authorization
+- CQRS: Use ```IRequest<TResponse>``` for Queries and Commands
+- Event-Driven architecture: Use ```INotification``` for broadcasting domain events
+- Middleware-style behaviors: Add ```IPipelineBehavior``` for logging, validation, caching, etc.
 
 ----
 
@@ -230,7 +231,7 @@ public interface IPipelineBehavior<TRequest, TResponse>
 - Updated documentation and examples
 - .NET 8+ support
 
-### 🔜 v1.2.0 — Pre/Post Processors (Planned)
+### 🔜 v1.2.0 — Pre/Post Processors (Released)
 - `IRequestPreProcessor<TRequest>` interface
 - `IRequestPostProcessor<TRequest, TResponse>` interface
 - Pre and post hooks for request lifecycle

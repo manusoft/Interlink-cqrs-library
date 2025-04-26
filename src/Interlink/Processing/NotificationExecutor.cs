@@ -1,7 +1,6 @@
-﻿using Interlink.Abstractions;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Interlink.Processing;
+namespace Interlink;
 
 internal class NotificationExecutor(IServiceProvider provider)
 {
