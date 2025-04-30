@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Interlink.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Interlink;
 
@@ -22,7 +23,7 @@ internal class Sender(IServiceProvider provider) : ISender
         }
 
         // Create the handler delegate
-        RequestHandlerDelegate<TResponse> handlerDelegate = () => handler.Handle((dynamic)request, cancellationToken);
+        RequestHandlerDelegate<TResponse> handlerDelegate = (CancellationToken) => handler.Handle((dynamic)request, cancellationToken);
 
         // Get all pipeline behaviors
         var behaviors = provider.GetServices(typeof(IPipelineBehavior<,>)
@@ -35,7 +36,7 @@ internal class Sender(IServiceProvider provider) : ISender
         foreach (var behavior in behaviors)
         {
             var next = handlerDelegate;
-            handlerDelegate = () => behavior.Handle((dynamic)request, cancellationToken, next);
+            handlerDelegate = (CancellationToken) => behavior.Handle((dynamic)request, next, cancellationToken);
         }
 
         // Execute the handler and return the response
@@ -55,3 +56,4 @@ internal class Sender(IServiceProvider provider) : ISender
         return response;
     }
 }
+

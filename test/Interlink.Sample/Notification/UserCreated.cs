@@ -1,4 +1,6 @@
-﻿namespace Interlink.Sample.Notification;
+﻿using Interlink.Contracts;
+
+namespace Interlink.Sample.Notification;
 
 public class UserCreated(string userName) : INotification
 {

@@ -1,4 +1,6 @@
-﻿namespace Interlink;
+﻿using Interlink.Contracts;
+
+namespace Interlink;
 
 /// <summary>
 /// A behavior that logs the handling of requests and responses in the pipeline.
@@ -21,15 +23,15 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
     /// <param name="next">The next delegate in the pipeline.</param>
     /// <returns>The response from the next delegate in the pipeline.</returns>
     public async Task<TResponse> Handle(
-        TRequest request,
-        CancellationToken cancellationToken,
-        RequestHandlerDelegate<TResponse> next)
+        TRequest request,        
+        RequestHandlerDelegate<TResponse> next, 
+        CancellationToken cancellationToken)
     {
-        Console.WriteLine($"[Behavior] Handling {typeof(TRequest).Name}");
+        Console.WriteLine($"[Behavior] Handling {typeof(TRequest).Name}...");
 
         var response = await next();
 
-        Console.WriteLine($"[Behavior] Handled {typeof(TRequest).Name}");
+        Console.WriteLine($"[Behavior] Handled {typeof(TRequest).Name}...");
 
         return response;
     }

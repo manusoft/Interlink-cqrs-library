@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Interlink.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Interlink;
 
@@ -18,13 +19,13 @@ internal class PipelineExecutor(IServiceProvider provider)
         var behaviors = provider.GetServices<IPipelineBehavior<TRequest, TResponse>>().ToList();
         var handler = provider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
 
-        Task<TResponse> Handler() => handler.Handle(request, cancellationToken);
-        RequestHandlerDelegate<TResponse> currentHandler = Handler;
+        // Fix: Explicitly define the Handler method as a lambda to match the delegate signature
+        RequestHandlerDelegate<TResponse> currentHandler = (CancellationToken) => handler.Handle(request, cancellationToken);
 
         foreach (var behavior in behaviors.AsEnumerable().Reverse())
         {
             var next = currentHandler;
-            currentHandler = () => behavior.Handle(request, cancellationToken, next);
+            currentHandler = (CancellationToken) => behavior.Handle(request, next, cancellationToken);
         }
 
         var response = await currentHandler();

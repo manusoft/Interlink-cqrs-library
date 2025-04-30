@@ -1,6 +1,8 @@
 using Interlink;
 using Interlink.Sample.Data;
+using Interlink.Sample.Logging;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,10 +18,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddLogging();
 
 //builder.Services.AddInterlink(typeof(Program).Assembly);
-//builder.Services.AddInterlink(Assembly.GetExecutingAssembly());
+builder.Services.AddInterlink(Assembly.GetExecutingAssembly());
 
-builder.Services.AddInterlink();
-builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+//builder.Services.AddInterlink();
+builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(MyLoggingBehavior<,>));
+//builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(MyLoggingBehavior2<,>));
 
 var app = builder.Build();
 

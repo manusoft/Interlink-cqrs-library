@@ -1,4 +1,5 @@
-﻿using Interlink.Sample.Data;
+﻿using Interlink.Contracts;
+using Interlink.Sample.Data;
 using Interlink.Sample.Entities;
 
 namespace Interlink.Sample.Features;

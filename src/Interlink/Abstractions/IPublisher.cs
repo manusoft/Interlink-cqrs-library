@@ -1,4 +1,6 @@
-﻿namespace Interlink;
+﻿using Interlink.Contracts;
+
+namespace Interlink;
 
 /// <summary>
 /// Defines a mechanism for publishing notifications to subscribers.
