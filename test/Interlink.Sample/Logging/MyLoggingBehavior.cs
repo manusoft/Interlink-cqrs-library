@@ -46,7 +46,7 @@ public class MyLoggingBehavior2<TRequest, TResponse> : IPipelineBehavior<TReques
     where TRequest : IRequest<TResponse>
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="MyLoggingBehavior{TRequest, TResponse}"/> class.
+    /// Initializes a new instance of the <see cref="MyLoggingBehavior2{TRequest, TResponse}"/> class.
     /// </summary>
     public MyLoggingBehavior2() { }
 
