@@ -129,8 +129,7 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 }
 ```
 
-Pipeline behaviors are automatically registered when you call AddInterlink().
-You can manually register like:
+Pipeline behaviors can be manually registered like this:
 
 ```csharp
 builder.Services.AddInterlink();
@@ -287,6 +286,9 @@ public interface IRequestPostProcessor<TRequest, TResponse>
 - `IRequestPostProcessor<TRequest, TResponse>` interface
 - Pre and post hooks for request lifecycle
 - Optional unit-of-work behaviors
+
+### ✅ v1.2.1 — Fix Critical Bugs (Released)
+- Fix critical bugs in `IPipelineBehavior<TRequest, TResponse>`
 
 ### 🔜 v1.3.0 — Performance & Customization
 - Handler resolution caching (delegate-based)

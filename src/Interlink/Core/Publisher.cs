@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Interlink.Contracts;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Interlink;
 

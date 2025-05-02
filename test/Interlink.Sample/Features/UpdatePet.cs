@@ -1,4 +1,5 @@
-﻿using Interlink.Sample.Data;
+﻿using Interlink.Contracts;
+using Interlink.Sample.Data;
 using Interlink.Sample.Entities;
 using Interlink.Sample.Exceptions;
 

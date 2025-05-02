@@ -1,4 +1,6 @@
-﻿namespace Interlink;
+﻿using Interlink.Contracts;
+
+namespace Interlink;
 
 /// <summary>  
 /// Defines a sender that can send requests and receive responses.  

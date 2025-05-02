@@ -36,11 +36,11 @@ public static class ServiceCollectionExtensions
             }
 
             // Register IPipelineBehavior<TRequest, TResponse> for behaviors
-            var pipelineBehaviors = TypeScanner.Scan(assembly, typeof(IPipelineBehavior<,>));
-            foreach (var (serviceType, implementationType) in pipelineBehaviors)
-            {
-                services.AddScoped(serviceType, implementationType);
-            }
+            //var pipelineBehaviors = TypeScanner.Scan(assembly, typeof(IPipelineBehavior<,>));
+            //foreach (var (serviceType, implementationType) in pipelineBehaviors)
+            //{
+            //    services.AddScoped(serviceType, implementationType);
+            //}
 
             // Register IRequestPreProcessor<TRequest> for pre-processors
             var preProcessors = TypeScanner.Scan(assembly, typeof(IRequestPreProcessor<>));
