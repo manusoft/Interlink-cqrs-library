@@ -129,7 +129,7 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 }
 ```
 
-Pipeline behaviors are can be manually register like:
+Pipeline behaviors can be manually registered like this:
 
 ```csharp
 builder.Services.AddInterlink();
