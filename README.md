@@ -17,7 +17,7 @@
 - 🔄 Decouples logic using handlers
 - 🧩 Easy registration with `AddInterlink()`
 - 🚀 Lightweight, fast, and no external dependencies
-- 🔄 Pre and Post Processors for enhanced lifecycle control (v1.2.0)
+- 🔄 Pre and Post Processors for enhanced lifecycle control
 - ✅ Compatible with .NET 8 and .NET 9
 
 ---
@@ -132,13 +132,12 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 }
 ```
 
-Pipeline behaviors are automatically registered when you call AddInterlink().
-You can manually register like:
+Pipeline behaviors can be manually registered like this:
+
 ```csharp
 builder.Services.AddInterlink();
 builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
 ```
-
 ---
 
 ## 🔄 Pre and Post Processor
@@ -166,6 +165,7 @@ public class MyRequestPostProcessor : IRequestPostProcessor<GetAllPets.Query, Li
 Pre and Post Processors are automatically registered when you call AddInterlink().
 
 ---
+
 ## 📦 API Overview
 
 ### ```IRequest<TResponse>```
@@ -199,6 +199,7 @@ public interface INotificationHandler<TNotification>
     Task Handle(TNotification notification, CancellationToken cancellationToken);
 }
 ```
+
 
 ### ```ISender```
 
@@ -249,14 +250,13 @@ public interface IRequestPostProcessor<TRequest, TResponse>
 }
 ```
 
-
 ----
 
 ## 🔍 Example Use Case
 
-- CQRS: Use IRequest<TResponse> for queries/commands
-- Event-Driven: Use INotification for broadcasting domain events
-- Middleware-style behaviors: Logging, validation, authorization
+- CQRS: Use ```IRequest<TResponse>``` for Queries and Commands
+- Event-Driven architecture: Use ```INotification``` for broadcasting domain events
+- Middleware-style behaviors: Add ```IPipelineBehavior``` for logging, validation, caching, etc.
 
 ----
 
@@ -289,6 +289,9 @@ public interface IRequestPostProcessor<TRequest, TResponse>
 - `IRequestPostProcessor<TRequest, TResponse>` interface
 - Pre and post hooks for request lifecycle
 - Optional unit-of-work behaviors
+
+### ✅ v1.2.1 — Fix Critical Bugs (Released)
+- Fix critical bugs in `IPipelineBehavior<TRequest, TResponse>`
 
 ### 🔜 v1.3.0 — Performance & Customization
 - Handler resolution caching (delegate-based)
