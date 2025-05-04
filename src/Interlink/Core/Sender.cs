@@ -21,37 +21,42 @@ internal class Sender(IServiceProvider provider, Func<Type, object?>? customFact
 
     public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default)
     {
-        var handlerType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
+        var requestType = request.GetType();
+        var responseType = typeof(TResponse);
+
+        // Resolve main handler
+        var handlerType = typeof(IRequestHandler<,>).MakeGenericType(requestType, responseType);
         dynamic handler = ResolveHandler(handlerType);
 
-        var preProcessors = (_serviceFactory(typeof(IEnumerable<>).MakeGenericType(typeof(IRequestPreProcessor<>).MakeGenericType(request.GetType()))) as IEnumerable<object>)?
-            .Cast<dynamic>() ?? Enumerable.Empty<dynamic>();
+        // Pre-processors
+        var preProcessorType = typeof(IRequestPreProcessor<>).MakeGenericType(requestType);
+        var preProcessors = (_serviceFactory(typeof(IEnumerable<>).MakeGenericType(preProcessorType)) as IEnumerable<object>)?.Cast<dynamic>() ?? [];
 
         foreach (var processor in preProcessors)
-        {
             await processor.Process((dynamic)request, cancellationToken);
-        }
 
-        RequestHandlerDelegate<TResponse> handlerDelegate = (CancellationToken) => handler.Handle((dynamic)request, cancellationToken);
+        // Build handler delegate
+        RequestHandlerDelegate<TResponse> handlerDelegate = ct => handler.Handle((dynamic)request, ct);
 
-        var behaviors = (_serviceFactory(typeof(IEnumerable<>).MakeGenericType(typeof(IPipelineBehavior<,>).MakeGenericType(request.GetType(), typeof(TResponse)))) as IEnumerable<object>)?
-            .Cast<dynamic>() ?? Enumerable.Empty<dynamic>();
+        // Pipeline behaviors (wrapped in reverse order)
+        var behaviorType = typeof(IPipelineBehavior<,>).MakeGenericType(requestType, responseType);
+        var behaviors = (_serviceFactory(typeof(IEnumerable<>).MakeGenericType(behaviorType)) as IEnumerable<object>)?.Cast<dynamic>() ?? [];
 
         foreach (var behavior in behaviors.Reverse())
         {
             var next = handlerDelegate;
-            handlerDelegate = (CancellationToken) => behavior.Handle((dynamic)request, next, cancellationToken);
+            handlerDelegate = ct => behavior.Handle((dynamic)request, next, ct);
         }
 
-        TResponse response = await handlerDelegate();
+        // Execute final delegate (via pipeline + handler)
+        TResponse response = await handlerDelegate(cancellationToken);
 
-        var postProcessors = (_serviceFactory(typeof(IEnumerable<>).MakeGenericType(typeof(IRequestPostProcessor<,>).MakeGenericType(request.GetType(), typeof(TResponse)))) as IEnumerable<object>)?
-            .Cast<dynamic>() ?? Enumerable.Empty<dynamic>();
+        // Post-processors
+        var postProcessorType = typeof(IRequestPostProcessor<,>).MakeGenericType(requestType, responseType);
+        var postProcessorInstances = (_serviceFactory(typeof(IEnumerable<>).MakeGenericType(postProcessorType)) as IEnumerable<object>)?.Cast<dynamic>() ?? [];
 
-        foreach (var processor in postProcessors)
-        {
+        foreach (var processor in postProcessorInstances)
             await processor.Process((dynamic)request, response, cancellationToken);
-        }
 
         return response;
     }
