@@ -7,23 +7,6 @@
 
 ---
 
-## 📚 Table of Contents
-
-- [Features](#-features)
-- [Why Interlink?](#-why-interlink)
-- [Installation](#-installation)
-- [Setup](#-setup)
-- [Request/Response Pattern](#-requestresponse-pattern)
-- [Notifications](#-notifications-one-to-many)
-- [Pipeline Behaviors](#-pipeline-behaviors)
-- [Pre and Post Processor](#-pre-and-post-processor)
-- [API Overview](#-api-overview)
-- [Example Use Case](#-example-use-case)
-- [Roadmap](#-roadmap)
-- [License](#-license)
-
----
-
 ## ✨ Features
 
 - 🧩 Simple mediator pattern for request/response
