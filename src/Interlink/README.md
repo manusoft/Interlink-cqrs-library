@@ -1,4 +1,7 @@
-﻿# Interlink
+﻿![NuGet](https://img.shields.io/nuget/v/Interlink)
+![.NET](https://img.shields.io/badge/.NET-8%20%7C%209-blueviolet)
+
+# Interlink
 
 **Interlink** is a lightweight and modern mediator library for .NET, designed to decouple your code through request/response and notification patterns. Built with simplicity and performance in mind, it helps streamline communication between components while maintaining a clean architecture.
 
@@ -12,10 +15,14 @@
 - 🧠 Clean separation of concerns via handlers
 - 🪝 Dependency injection support out of the box
 - 🔄 Decouples logic using handlers
-- 🧩 Easy registration with `AddInterlink()`
+- 🧩 Easy registration with AddInterlink()
 - 🚀 Lightweight, fast, and no external dependencies
 - 🔄 Pre and Post Processors for enhanced lifecycle control
 - ✅ Compatible with .NET 8 and .NET 9
+- 🔍 Assembly scanning for automatic handler registration
+- 🧪 Custom service factory injection
+- 🔄 Pipeline ordering via attributes or configuration
+- 🔄 Handler resolution caching (delegate-based)
 
 ---
 
@@ -132,14 +139,51 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
 Pipeline behaviors can be manually registered like this:
 
 ```csharp
-builder.Services.AddInterlink();
-builder.Services.AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>));
+builder.Services.AddInterlink(config =>
+{
+    config.AddBehavior(typeof(LoggingBehavior<,>));
+    config.AddBehavior(typeof(LoggingBehavior2<,>)); // Add more behaviors as needed
+});
 ```
 ---
 
+Pipeline ordering can be controlled via attributes or configuration.
+```csharp
+[PipelineOrder(1)]
+public class FirstBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : IRequest<TResponse>
+{
+    public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+    {
+        Console.WriteLine("First behavior executed");
+        return await next();
+    }
+}
+
+[PipelineOrder(2)]
+public class SecondBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+    where TRequest : IRequest<TResponse>
+{
+    public async Task<TResponse> Handle(TRequest request, CancellationToken cancellationToken, RequestHandlerDelegate<TResponse> next)
+    {
+        Console.WriteLine("Second behavior executed");
+        return await next();
+    }
+}
+```
+You can also use the `AddInterlink()` method to specify the order of pipeline behaviors:
+```csharp
+builder.Services.AddInterlink(config =>
+{
+    config.AddBehavior<FirstBehavior<GetAllPets.Query, List<string>>>(1);
+    config.AddBehavior<SecondBehavior<GetAllPets.Query, List<string>>>(2);
+});
+```
+
 ## 🔄 Pre and Post Processor
 
-### 1. Define a Pre and Post Processors:
+### 1. Define Pre and Post Processors:
+
 ```csharp
 public class MyRequestPreProcessor : IRequestPreProcessor<GetAllPets.Query>
 {
@@ -290,7 +334,7 @@ public interface IRequestPostProcessor<TRequest, TResponse>
 ### ✅ v1.2.1 — Fix Critical Bugs (Released)
 - Fix critical bugs in `IPipelineBehavior<TRequest, TResponse>`
 
-### 🔜 v1.3.0 — Performance & Customization
+### ✅ v1.3.0 — Performance & Customization (Released)
 - Handler resolution caching (delegate-based)
 - Custom service factory injection support
 - Pipeline ordering via attributes or configuration

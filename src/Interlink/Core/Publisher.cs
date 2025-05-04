@@ -15,7 +15,7 @@ internal class Publisher(IServiceProvider provider) : IPublisher
         {
             var task = (Task)handlerType
                 .GetMethod(nameof(INotificationHandler<TNotification>.Handle))!
-                .Invoke(handler, [notification, cancellationToken])!;
+                .Invoke(handler, new object[] { notification, cancellationToken })!;
 
             await task;
         }

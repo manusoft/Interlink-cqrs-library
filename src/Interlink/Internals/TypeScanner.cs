@@ -1,22 +1,29 @@
-﻿using System.Reflection;
+﻿using System.Collections.Concurrent;
+using System.Reflection;
 
 namespace Interlink;
 
 internal static class TypeScanner
 {
+    private static readonly ConcurrentDictionary<(Assembly Assembly, Type OpenGenericType), List<(Type, Type)>> _scanCache = new();
+
     public static IEnumerable<(Type ServiceType, Type ImplementationType)> Scan(Assembly assembly, Type openGenericType)
     {
-        return assembly
-            .GetTypes()
-            .Where(t => !t.IsAbstract && !t.IsInterface)
-            .SelectMany(t =>
-                t.GetInterfaces()
-                    .Where(i =>
-                        i.IsGenericType &&
-                        i.GetGenericTypeDefinition() == openGenericType
-                    )
-                    .Select(i => (ServiceType: i, ImplementationType: t))
-            );
+        return _scanCache.GetOrAdd((assembly, openGenericType), key =>
+        {
+            return key.Assembly
+                .GetTypes()
+                .Where(t => !t.IsAbstract && !t.IsInterface)
+                .SelectMany(t =>
+                    t.GetInterfaces()
+                        .Where(i =>
+                            i.IsGenericType &&
+                            i.GetGenericTypeDefinition() == key.OpenGenericType
+                        )
+                        .Select(i => (ServiceType: i, ImplementationType: t))
+                )
+                .ToList();
+        });
     }
 
     public static IEnumerable<(Type ServiceType, Type ImplementationType)> ScanOpenGenericImplementations(Type openGenericType)

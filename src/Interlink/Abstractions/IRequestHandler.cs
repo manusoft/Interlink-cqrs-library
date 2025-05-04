@@ -3,7 +3,7 @@
 namespace Interlink;
 
 /// <summary>
-/// Defines a handler for processing a request of type <typeparamref name="TRequest"/> and producing a response of type <typeparamref name="TResponse"/>.
+/// Defines the handler for requests that return a response.
 /// </summary>
 /// <typeparam name="TRequest">The type of the request.</typeparam>
 /// <typeparam name="TResponse">The type of the response.</typeparam>
@@ -20,7 +20,7 @@ public interface IRequestHandler<in TRequest, TResponse> where TRequest : IReque
 
 
 /// <summary>
-/// Defines a handler for processing a request of type <typeparamref name="TRequest"/>.
+/// Defines the handler for requests that do not return a response.
 /// </summary>
 /// <typeparam name="TRequest"></typeparam>
 public interface IRequestHandler<in TRequest> where TRequest : IRequest

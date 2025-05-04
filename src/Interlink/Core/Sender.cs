@@ -1,57 +1,62 @@
 ﻿using Interlink.Contracts;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Interlink;
 
-internal class Sender(IServiceProvider provider) : ISender
+internal class Sender(IServiceProvider provider, Func<Type, object?>? customFactory = null) : ISender
 {
+    private readonly Func<Type, object?> _serviceFactory = customFactory ?? provider.GetService;
+
+    private object ResolveHandler(Type handlerType)
+    {
+        // Use the custom factory or default to IServiceProvider
+        var handler = _serviceFactory(handlerType);
+
+        if (handler == null)
+        {
+            throw new InvalidOperationException($"Handler for '{handlerType.FullName}' not found.");
+        }
+
+        return handler;
+    }
+
     public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default)
     {
-        // Get the request handler for the given request
-        var handlerType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
-        dynamic handler = provider.GetService(handlerType)
-            ?? throw new InvalidOperationException($"Handler for '{handlerType.FullName}' not found.");
+        var requestType = request.GetType();
+        var responseType = typeof(TResponse);
 
-        // Get all pre-processors for the given request type
-        var preProcessors = provider.GetServices(typeof(IRequestPreProcessor<>).MakeGenericType(request.GetType()))
-            .Cast<dynamic>();
+        // Resolve main handler
+        var handlerType = typeof(IRequestHandler<,>).MakeGenericType(requestType, responseType);
+        dynamic handler = ResolveHandler(handlerType);
 
-        // Execute all pre-processors before handling the request
+        // Pre-processors
+        var preProcessorType = typeof(IRequestPreProcessor<>).MakeGenericType(requestType);
+        var preProcessors = (_serviceFactory(typeof(IEnumerable<>).MakeGenericType(preProcessorType)) as IEnumerable<object>)?.Cast<dynamic>() ?? [];
+
         foreach (var processor in preProcessors)
-        {
             await processor.Process((dynamic)request, cancellationToken);
-        }
 
-        // Create the handler delegate
-        RequestHandlerDelegate<TResponse> handlerDelegate = (CancellationToken) => handler.Handle((dynamic)request, cancellationToken);
+        // Build handler delegate
+        RequestHandlerDelegate<TResponse> handlerDelegate = ct => handler.Handle((dynamic)request, ct);
 
-        // Get all pipeline behaviors
-        var behaviors = provider.GetServices(typeof(IPipelineBehavior<,>)
-            .MakeGenericType(request.GetType(), typeof(TResponse)))
-            .Cast<dynamic>()
-            .Reverse() // Chain behaviors in reverse order
-            .ToList();
+        // Pipeline behaviors (wrapped in reverse order)
+        var behaviorType = typeof(IPipelineBehavior<,>).MakeGenericType(requestType, responseType);
+        var behaviors = (_serviceFactory(typeof(IEnumerable<>).MakeGenericType(behaviorType)) as IEnumerable<object>)?.Cast<dynamic>() ?? [];
 
-        // Chain the pipeline behaviors around the handler
-        foreach (var behavior in behaviors)
+        foreach (var behavior in behaviors.Reverse())
         {
             var next = handlerDelegate;
-            handlerDelegate = (CancellationToken) => behavior.Handle((dynamic)request, next, cancellationToken);
+            handlerDelegate = ct => behavior.Handle((dynamic)request, next, ct);
         }
 
-        // Execute the handler and return the response
-        TResponse response = await handlerDelegate();
+        // Execute final delegate (via pipeline + handler)
+        TResponse response = await handlerDelegate(cancellationToken);
 
-        // Get all post-processors for the given request type
-        var postProcessors = provider.GetServices(typeof(IRequestPostProcessor<,>)
-            .MakeGenericType(request.GetType(), typeof(TResponse)))
-            .Cast<dynamic>();
+        // Post-processors
+        var postProcessorType = typeof(IRequestPostProcessor<,>).MakeGenericType(requestType, responseType);
+        var postProcessorInstances = (_serviceFactory(typeof(IEnumerable<>).MakeGenericType(postProcessorType)) as IEnumerable<object>)?.Cast<dynamic>() ?? [];
 
-        // Execute all post-processors after handling the request
-        foreach (var processor in postProcessors)
-        {
+        foreach (var processor in postProcessorInstances)
             await processor.Process((dynamic)request, response, cancellationToken);
-        }
 
         return response;
     }

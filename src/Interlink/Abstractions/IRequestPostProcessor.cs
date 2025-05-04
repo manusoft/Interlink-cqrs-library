@@ -1,7 +1,7 @@
 ﻿namespace Interlink;
 
 /// <summary>
-/// Defines a post-processor for handling a request and its corresponding response.
+/// Defines a post-processor for a request, which runs after the request handler.
 /// </summary>
 /// <typeparam name="TRequest">The type of the request.</typeparam>
 /// <typeparam name="TResponse">The type of the response.</typeparam>
