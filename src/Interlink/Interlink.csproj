@@ -11,7 +11,7 @@
 	<Description>A lightweight and minimal mediator library for .NET. Interlink helps you decouple your application using request/response and notification patterns with simple, clean code.</Description>
 	<Copyright>Copyright © 2025 ManuHub</Copyright>
 	<Authors>Manojbabu</Authors>
-	<PackageTags>mediator cqrs request response notification dotnet csharp interlink architecture dependency-injection clean-architecture lightweight</PackageTags>
+	<PackageTags>mediator cqrs request response notification query command middleware behaviours pre-post dotnet csharp interlink architecture dependency-injection clean-architecture lightweight</PackageTags>
 	<PackageProjectUrl>https://github.com/manusoft/Interlink-cqrs-library</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/manusoft/Interlink-cqrs-library</RepositoryUrl>
 	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
