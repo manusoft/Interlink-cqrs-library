@@ -174,8 +174,8 @@ You can also use the `AddInterlink()` method to specify the order of pipeline be
 ```csharp
 builder.Services.AddInterlink(config =>
 {
-    config.AddBehavior<FirstBehavior<GetAllPets.Query, List<string>>>(1);
-    config.AddBehavior<SecondBehavior<GetAllPets.Query, List<string>>>(2);
+    config.AddBehavior(typeof(FirstBehavior<,>));
+    config.AddBehavior(typeof(SecondBehavior<,>));
 });
 ```
 
