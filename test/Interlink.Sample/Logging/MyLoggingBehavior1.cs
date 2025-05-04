@@ -7,13 +7,14 @@ namespace Interlink.Sample.Logging;
 /// </summary>
 /// <typeparam name="TRequest">The type of the request.</typeparam>
 /// <typeparam name="TResponse">The type of the response.</typeparam>
-public class MyLoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
+[PipelineOrder(1)]
+public class MyLoggingBehavior1<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="MyLoggingBehavior{TRequest, TResponse}"/> class.
+    /// Initializes a new instance of the <see cref="MyLoggingBehavior1{TRequest, TResponse}"/> class.
     /// </summary>
-    public MyLoggingBehavior() { }
+    public MyLoggingBehavior1() { }
 
     /// <summary>
     /// Handles the request by logging its processing and invoking the next delegate in the pipeline.
@@ -42,6 +43,7 @@ public class MyLoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest
 /// </summary>
 /// <typeparam name="TRequest">The type of the request.</typeparam>
 /// <typeparam name="TResponse">The type of the response.</typeparam>
+[PipelineOrder(2)]
 public class MyLoggingBehavior2<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
