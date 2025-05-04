@@ -1,6 +1,4 @@
-﻿using Interlink.Contracts;
-
-namespace Interlink;
+﻿namespace Interlink;
 
 /// <summary>
 /// Represents a delegate that handles a request and produces a response asynchronously.

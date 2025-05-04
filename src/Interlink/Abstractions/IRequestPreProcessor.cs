@@ -1,7 +1,7 @@
 ﻿namespace Interlink;
 
 /// <summary>
-/// Defines a pre-processor for a specific type of request.
+/// Defines a pre-processor for a request, which runs before the request handler.
 /// </summary>
 /// <typeparam name="TRequest">The type of the request to process.</typeparam>
 public interface IRequestPreProcessor<TRequest>
