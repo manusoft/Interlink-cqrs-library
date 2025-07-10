@@ -66,7 +66,7 @@ public static class ServiceCollectionExtensions
 
         // Register core services
         services.AddScoped<ISender, Sender>();
-        services.AddScoped<IPublisher, Publisher>();        
+        services.AddScoped<IPublisher, Publisher>();
 
         return services;
     }
