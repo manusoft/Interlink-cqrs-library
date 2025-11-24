@@ -1,11 +1,12 @@
-![Static Badge](https://img.shields.io/badge/Interlink-red) ![NuGet Version](https://img.shields.io/nuget/v/Interlink)  ![NuGet Downloads](https://img.shields.io/nuget/dt/Interlink) ![.NET](https://img.shields.io/badge/.NET-8%20%7C%209-blueviolet)
+![NuGet](https://img.shields.io/nuget/v/Interlink) ![.NET](https://img.shields.io/badge/.NET-Standard%202.0+%20%7C%208%20%7C%209-blueviolet)
+
 # Interlink
 
 **Interlink** is a lightweight and modern mediator library for .NET, designed to decouple your code through request/response and notification patterns. Built with simplicity and performance in mind, it helps streamline communication between components while maintaining a clean architecture.
 
 ![ChatGPT Image Apr 16, 2025, 12_32_44 AM (Custom)](https://github.com/user-attachments/assets/d7be3278-a115-47cf-b9e5-452a7d9a434d)
-
 ---
+
 ## ✨ Features
 
 - 🧩 Simple mediator pattern for request/response
@@ -17,11 +18,11 @@
 - 🧩 Easy registration with AddInterlink()
 - 🚀 Lightweight, fast, and no external dependencies
 - 🔄 Pre and Post Processors for enhanced lifecycle control
-- ✅ Compatible with .NET 8 and .NET 9
 - 🔍 Assembly scanning for automatic handler registration
 - 🧪 Custom service factory injection
 - 🔄 Pipeline ordering via attributes or configuration
 - 🔄 Handler resolution caching (delegate-based)
+- ✅ Compatible with .NET Standard 2.0+ .NET 8 and .NET 9
 
 ---
 
@@ -174,8 +175,8 @@ You can also use the `AddInterlink()` method to specify the order of pipeline be
 ```csharp
 builder.Services.AddInterlink(config =>
 {
-    config.AddBehavior(typeof(FirstBehavior<,>));
-    config.AddBehavior(typeof(SecondBehavior<,>));
+    config.AddBehavior<FirstBehavior<GetAllPets.Query, List<string>>>(1);
+    config.AddBehavior<SecondBehavior<GetAllPets.Query, List<string>>>(2);
 });
 ```
 
@@ -339,6 +340,9 @@ public interface IRequestPostProcessor<TRequest, TResponse>
 - Pipeline ordering via attributes or configuration
 - Assembly scanning filters by namespace or attribute
 
+### ✅ v1.3.1 — .NET Standard 2.0+ compatible (Released)
+- Support .NET Standard 2.0+ compatible (works in .NET Core, .NET 5+, .NET Framework 4.7.2+)
+
 ### 🌐 v1.4.0 — Extensions
 - `Interlink.Extensions.Logging` — built-in logging behavior
 - `Interlink.Extensions.Validation` — integration with FluentValidation
@@ -363,9 +367,3 @@ _Stay tuned for more updates! Contributions and suggestions are welcome._ ✨
 MIT License © ManuHub
 
 ---
-
-
-
-
-
-

@@ -10,13 +10,7 @@ internal class Sender(IServiceProvider provider, Func<Type, object?>? customFact
     {
         // Use the custom factory or default to IServiceProvider
         var handler = _serviceFactory(handlerType);
-
-        if (handler == null)
-        {
-            throw new InvalidOperationException($"Handler for '{handlerType.FullName}' not found.");
-        }
-
-        return handler;
+        return handler ?? throw new InvalidOperationException($"Handler for '{handlerType.FullName}' not found.");
     }
 
     public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default)
@@ -61,4 +55,3 @@ internal class Sender(IServiceProvider provider, Func<Type, object?>? customFact
         return response;
     }
 }
-
