@@ -1,4 +1,4 @@
-﻿![NuGet](https://img.shields.io/nuget/v/Interlink) ![.NET](https://img.shields.io/badge/.NET-Standard%202.0+%20%7C%208%20%7C%209-blueviolet)
+﻿![NuGet](https://img.shields.io/nuget/v/Interlink) ![.NET](https://img.shields.io/badge/.NET-Standard%202.1+%20%7C%208%20%7C%209%20%7C%2010-blueviolet)
 
 # Interlink
 
@@ -21,7 +21,7 @@
 - 🧪 Custom service factory injection
 - 🔄 Pipeline ordering via attributes or configuration
 - 🔄 Handler resolution caching (delegate-based)
-- ✅ Compatible with .NET Standard 2.0+ .NET 8 and .NET 9
+- ✅ Compatible with .NET Standard 2.0+ .NET 8 .NET 9 and .NET 10
 
 ---
 
