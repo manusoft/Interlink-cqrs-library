@@ -23,13 +23,13 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
-      - name: Restore Filo
+      - name: Restore
         run: dotnet restore src/Interlink/Interlink.csproj
 
-      - name: Build Filo
+      - name: Build
         run: dotnet build src/Interlink/Interlink.csproj -c Release
 
-      - name: Pack Filo
+      - name: Pack
         run: dotnet pack src/Interlink/Interlink.csproj -c Release --output ./nupkg
 
       - name: Publish to nuget.org and GitHub Packages
