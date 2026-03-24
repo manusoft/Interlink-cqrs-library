@@ -1,4 +1,4 @@
-![NuGet](https://img.shields.io/nuget/v/Interlink) 
+![Static Badge](https://img.shields.io/badge/Interlink-blue)
 ![NuGet Version](https://img.shields.io/nuget/v/Interlink)
 ![NuGet Downloads](https://img.shields.io/nuget/dt/Interlink)
 ![Visitors](https://visitor-badge.laobi.icu/badge?page_id=manusoft/Interlink)
