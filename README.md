@@ -1,4 +1,7 @@
-![NuGet](https://img.shields.io/nuget/v/Interlink) ![.NET](https://img.shields.io/badge/.NET-Standard%202.0+%20%7C%208%20%7C%209-blueviolet)
+![NuGet](https://img.shields.io/nuget/v/Interlink) 
+![NuGet Version](https://img.shields.io/nuget/v/Interlink)
+![NuGet Downloads](https://img.shields.io/nuget/dt/Interlink)
+![Visitors](https://visitor-badge.laobi.icu/badge?page_id=manusoft/Interlink)
 
 # Interlink
 
@@ -22,7 +25,7 @@
 - 🧪 Custom service factory injection
 - 🔄 Pipeline ordering via attributes or configuration
 - 🔄 Handler resolution caching (delegate-based)
-- ✅ Compatible with .NET Standard 2.0+ .NET 8 and .NET 9
+- ✅ Compatible with .NET Standard 2.0+ to .NET 10
 
 ---
 
