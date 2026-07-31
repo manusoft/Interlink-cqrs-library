@@ -3,55 +3,57 @@ using System.Reflection;
 
 namespace Interlink;
 
+/// <summary>
+/// Internal helper that scans assemblies for concrete implementations of open generic interfaces.
+/// Results are cached per assembly + open-generic type pair.
+/// </summary>
 internal static class TypeScanner
 {
-    private static readonly ConcurrentDictionary<(Assembly Assembly, Type OpenGenericType), List<(Type, Type)>> _scanCache = new();
+    private static readonly ConcurrentDictionary<(Assembly Assembly, Type OpenGenericType), List<(Type ServiceType, Type ImplementationType)>> Cache = new();
 
+    /// <summary>
+    /// Scans the given assembly for non-abstract, non-interface types that implement
+    /// the specified open generic interface.
+    /// </summary>
     public static IEnumerable<(Type ServiceType, Type ImplementationType)> Scan(Assembly assembly, Type openGenericType)
     {
-        return _scanCache.GetOrAdd((assembly, openGenericType), key =>
+        if (assembly is null) throw new ArgumentNullException(nameof(assembly));
+        if (openGenericType is null) throw new ArgumentNullException(nameof(openGenericType));
+
+        return Cache.GetOrAdd((assembly, openGenericType), key =>
         {
-            return key.Assembly
-                .GetTypes()
-                .Where(t => !t.IsAbstract && !t.IsInterface)
-                .SelectMany(t =>
-                    t.GetInterfaces()
-                        .Where(i =>
-                            i.IsGenericType &&
-                            i.GetGenericTypeDefinition() == key.OpenGenericType
-                        )
-                        .Select(i => (ServiceType: i, ImplementationType: t))
-                )
-                .ToList();
+            var results = new List<(Type, Type)>();
+
+            Type[] types;
+            try
+            {
+                types = key.Assembly.GetTypes();
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                types = ex.Types.Where(t => t is not null).Cast<Type>().ToArray();
+            }
+            catch
+            {
+                return results;
+            }
+
+            foreach (var type in types)
+            {
+                if (type is null || type.IsAbstract || type.IsInterface)
+                    continue;
+
+                foreach (var iface in type.GetInterfaces())
+                {
+                    if (iface.IsGenericType &&
+                        iface.GetGenericTypeDefinition() == key.OpenGenericType)
+                    {
+                        results.Add((iface, type));
+                    }
+                }
+            }
+
+            return results;
         });
-    }
-
-    public static IEnumerable<(Type ServiceType, Type ImplementationType)> ScanOpenGenericImplementations(Type openGenericType)
-    {
-        return AppDomain.CurrentDomain
-            .GetAssemblies()
-            .Where(a => !a.IsDynamic && !string.IsNullOrWhiteSpace(a.Location))
-            .SelectMany(a => SafeGetTypes(a))
-            .Where(t => !t.IsAbstract && !t.IsInterface)
-            .SelectMany(t =>
-                t.GetInterfaces()
-                    .Where(i =>
-                        i.IsGenericType &&
-                        i.GetGenericTypeDefinition() == openGenericType
-                    )
-                    .Select(i => (ServiceType: i, ImplementationType: t))
-            );
-    }
-
-    private static IEnumerable<Type> SafeGetTypes(Assembly assembly)
-    {
-        try
-        {
-            return assembly.GetTypes();
-        }
-        catch
-        {
-            return Array.Empty<Type>();
-        }
     }
 }

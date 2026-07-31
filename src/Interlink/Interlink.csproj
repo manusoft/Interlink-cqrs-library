@@ -4,10 +4,13 @@
     <TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<LangVersion>latest</LangVersion>
 	<NoWarn>CS8600</NoWarn>
+	  
 	<AssemblyName>Interlink</AssemblyName>
 	<RootNamespace>Interlink</RootNamespace>
 	<PackageId>Interlink</PackageId>
+	<Version>1.5.0</Version>
 	<Description>A lightweight and minimal mediator library for .NET. Interlink helps you decouple your application using request/response and notification patterns with simple, clean code.</Description>
 	<Copyright>Copyright © 2025-2026 ManuHub</Copyright>
 	<Authors>Manojbabu</Authors>
@@ -19,13 +22,9 @@
 	<IncludeSymbols>true</IncludeSymbols>
 	<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 	<EmbedUntrackedSources>true</EmbedUntrackedSources>
-	<Icon>icon.png</Icon>
 	<PackageIcon>icon.png</PackageIcon>
 	<PackageReadmeFile>README.md</PackageReadmeFile>
-	<Version>1.4.2</Version>
 	<IsPackable>true</IsPackable>
-	<LangVersion>latest</LangVersion>
-	<AotAssemblies>true</AotAssemblies>
   </PropertyGroup>
 
   <ItemGroup>	  
@@ -37,9 +36,9 @@
   </ItemGroup>
 
   <ItemGroup>
-	<Content Include="icon.png" Pack="true" PackagePath="" />
-	<Content Include="README.md" Pack="true" PackagePath="" />
-	<Content Include="LICENSE.txt" Pack="true" PackagePath="" />
+	<Content Include="icon.png" Pack="true" PackagePath="" Condition="Exists('LICENSE.txt')"/>
+	<Content Include="README.md" Pack="true" PackagePath="" Condition="Exists('README.md')"/>
+	<Content Include="LICENSE.txt" Pack="true" PackagePath="" Condition="Exists('icon.png')"/>
   </ItemGroup>
 
 </Project>
