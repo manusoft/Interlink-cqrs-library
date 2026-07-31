@@ -9,7 +9,7 @@
 		<RootNamespace>Interlink.Analyzers</RootNamespace>
 		<AssemblyName>Interlink.Analyzers</AssemblyName>
 		<PackageId>Interlink.Analyzers</PackageId>
-		<Version>1.5.0</Version>
+		<Version>1.5.1</Version>
 		<Description>Roslyn analyzer that detects requests without corresponding handlers for the Interlink mediator library.</Description>
 		<Authors>Manojbabu</Authors>
 		<PackageTags>interlink mediator analyzer roslyn cqrs</PackageTags>
@@ -22,12 +22,13 @@
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<IsPackable>true</IsPackable>
 		<DevelopmentDependency>true</DevelopmentDependency>
+		<SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Include="icon.png" Pack="true" PackagePath="" Condition="Exists('LICENSE.txt')"/>
+		<Content Include="icon.png" Pack="true" PackagePath="" Condition="Exists('icon.png')"/>
 		<Content Include="README.md" Pack="true" PackagePath="" Condition="Exists('README.md')"/>
-		<Content Include="LICENSE.txt" Pack="true" PackagePath="" Condition="Exists('icon.png')"/>
+		<Content Include="LICENSE.txt" Pack="true" PackagePath="" Condition="Exists('LICENSE.txt')"/>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -36,7 +37,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+		<AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
+		<AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="$(OutputPath)$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
 	</ItemGroup>
 
 </Project>
