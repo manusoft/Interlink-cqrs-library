@@ -13,7 +13,7 @@
 		<Description>Roslyn analyzer that detects requests without corresponding handlers for the Interlink mediator library.</Description>
 		<Authors>Manojbabu</Authors>
 		<PackageTags>interlink mediator analyzer roslyn cqrs</PackageTags>
-		<PackageProjectUrl>https://github.com/manusoft/Interlink-cqrs-library</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/manusoft/Interlink</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/manusoft/Interlink-cqrs-library</RepositoryUrl>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<IncludeBuildOutput>false</IncludeBuildOutput>

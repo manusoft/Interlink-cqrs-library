@@ -12,7 +12,7 @@
 		<Description>ASP.NET Core integration for the Interlink mediator library (filters, exception handling, helpers).</Description>
 		<Authors>Manojbabu</Authors>
 		<PackageTags>interlink mediator aspnetcore filters cqrs</PackageTags>
-		<PackageProjectUrl>https://github.com/manusoft/Interlink-cqrs-library</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/manusoft/Interlink</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/manusoft/Interlink-cqrs-library</RepositoryUrl>
 		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
