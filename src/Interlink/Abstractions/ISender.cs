@@ -10,10 +10,10 @@ public interface ISender
     /// <summary>
     /// Sends a request and returns the response produced by its handler.
     /// </summary>
-    /// <typeparam name="TResponse">The type of the response.</typeparam>
-    /// <param name="request">The request to send.</param>
-    /// <param name="cancellationToken">A token to monitor for cancellation requests.</param>
-    /// <returns>A task that represents the asynchronous operation. The task result contains the response.</returns>
-    /// <exception cref="HandlerNotFoundException">Thrown when no handler is registered for the request type.</exception>
     Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default);
+
+    /// <summary>
+    /// Sends a void/command request that does not produce a response value.
+    /// </summary>
+    Task Send(IRequest request, CancellationToken cancellationToken = default);
 }

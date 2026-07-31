@@ -8,7 +8,7 @@
 		<RootNamespace>Interlink.Extensions.Logging</RootNamespace>
 		<AssemblyName>Interlink.Extensions.Logging</AssemblyName>
 		<PackageId>Interlink.Extensions.Logging</PackageId>
-		<Version>1.5.0</Version>
+		<Version>1.5.1</Version>
 		<Description>Built-in logging pipeline behavior for the Interlink mediator library.</Description>
 		<Authors>Manojbabu</Authors>
 		<PackageTags>interlink mediator logging pipeline behavior cqrs</PackageTags>
