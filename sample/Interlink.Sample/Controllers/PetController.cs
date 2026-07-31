@@ -24,8 +24,8 @@ public class PetController(ISender sender) : ControllerBase
     [HttpPut]
     public async Task<IActionResult> UpdatePet([FromBody] UpdatePet.Command command, CancellationToken cancellationToken)
     {
-        var pet = await sender.Send(command, cancellationToken);
-        return Ok(pet);
+        await sender.Send(command, cancellationToken);
+        return Ok();
     }
 
     [HttpDelete("{id}")]

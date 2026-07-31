@@ -8,7 +8,7 @@
 		<RootNamespace>Interlink.Extensions.Validation</RootNamespace>
 		<AssemblyName>Interlink.Extensions.Validation</AssemblyName>
 		<PackageId>Interlink.Extensions.Validation</PackageId>
-		<Version>1.5.0</Version>
+		<Version>1.5.1</Version>
 		<Description>FluentValidation integration for the Interlink mediator library.</Description>
 		<Authors>Manojbabu</Authors>
 		<PackageTags>interlink mediator validation fluentvalidation pipeline behavior cqrs</PackageTags>

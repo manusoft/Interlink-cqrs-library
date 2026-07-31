@@ -84,6 +84,15 @@ internal sealed class Sender : ISender
         return response;
     }
 
+    /// <inheritdoc />
+    public Task Send(IRequest request, CancellationToken cancellationToken = default)
+    {
+        if (request is null)
+            throw new ArgumentNullException(nameof(request));
+
+        return Send<Unit>(request, cancellationToken);
+    }
+
     private object ResolveRequired(Type serviceType, Type requestType)
     {
         var instance = _serviceFactory(serviceType);
