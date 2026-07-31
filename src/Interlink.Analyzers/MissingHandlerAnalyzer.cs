@@ -18,14 +18,16 @@ public sealed class MissingHandlerAnalyzer : DiagnosticAnalyzer
     /// </summary>
     public const string DiagnosticId = "ILINK001";
 
-    private static readonly DiagnosticDescriptor Rule = new(
+    private static readonly DiagnosticDescriptor Rule = new DiagnosticDescriptor(
         id: DiagnosticId,
         title: "Missing request handler",
         messageFormat: "No handler found for request type '{0}'. Implement IRequestHandler<{0}, TResponse>.",
         category: "Interlink",
         defaultSeverity: DiagnosticSeverity.Warning,
         isEnabledByDefault: true,
-        description: "Every type that implements IRequest<TResponse> should have a corresponding IRequestHandler implementation registered or defined in the solution.");
+        description: "Every type that implements IRequest<TResponse> should have a corresponding IRequestHandler implementation defined in the compilation.",
+        helpLinkUri: null,
+        customTags: new[] { WellKnownDiagnosticTags.CompilationEnd });
 
     /// <inheritdoc />
     public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics =>
@@ -36,58 +38,89 @@ public sealed class MissingHandlerAnalyzer : DiagnosticAnalyzer
     {
         context.ConfigureGeneratedCodeAnalysis(GeneratedCodeAnalysisFlags.None);
         context.EnableConcurrentExecution();
-        context.RegisterCompilationStartAction(OnCompilationStart);
+        context.RegisterCompilationAction(AnalyzeCompilation);
     }
 
-    private static void OnCompilationStart(CompilationStartAnalysisContext context)
+    private static void AnalyzeCompilation(CompilationAnalysisContext context)
     {
-        var requestInterface = context.Compilation.GetTypeByMetadataName("Interlink.Contracts.IRequest`1");
-        var handlerInterface = context.Compilation.GetTypeByMetadataName("Interlink.IRequestHandler`2");
+        var compilation = context.Compilation;
 
+        var requestInterface = compilation.GetTypeByMetadataName("Interlink.Contracts.IRequest`1");
+        var handlerInterface = compilation.GetTypeByMetadataName("Interlink.IRequestHandler`2");
+
+        // Interlink not referenced in this compilation
         if (requestInterface is null || handlerInterface is null)
-            return; // Interlink not referenced
+            return;
 
         var requestTypes = new List<INamedTypeSymbol>();
-        var handlerRequestTypes = new HashSet<INamedTypeSymbol>(SymbolEqualityComparer.Default);
+        var handledRequestTypes = new HashSet<INamedTypeSymbol>(SymbolEqualityComparer.Default);
 
-        context.RegisterSymbolAction(symbolContext =>
+        foreach (var type in GetAllTypes(compilation.GlobalNamespace))
         {
-            if (symbolContext.Symbol is not INamedTypeSymbol namedType ||
-                namedType.TypeKind != TypeKind.Class && namedType.TypeKind != TypeKind.Struct)
-                return;
+            if (type.TypeKind is not (TypeKind.Class or TypeKind.Struct))
+                continue;
 
-            foreach (var iface in namedType.AllInterfaces)
+            if (type.IsAbstract)
+                continue;
+
+            foreach (var iface in type.AllInterfaces)
             {
-                if (iface.OriginalDefinition.Equals(requestInterface, SymbolEqualityComparer.Default) &&
+                // Collect request types: class/record implementing IRequest<T>
+                if (SymbolEqualityComparer.Default.Equals(iface.OriginalDefinition, requestInterface) &&
                     iface.TypeArguments.Length == 1)
                 {
-                    requestTypes.Add(namedType);
+                    requestTypes.Add(type);
                 }
 
-                if (iface.OriginalDefinition.Equals(handlerInterface, SymbolEqualityComparer.Default) &&
-                    iface.TypeArguments.Length == 2)
+                // Collect handled request types from IRequestHandler<TRequest, TResponse>
+                if (SymbolEqualityComparer.Default.Equals(iface.OriginalDefinition, handlerInterface) &&
+                    iface.TypeArguments.Length == 2 &&
+                    iface.TypeArguments[0] is INamedTypeSymbol handledRequest)
                 {
-                    var reqArg = iface.TypeArguments[0] as INamedTypeSymbol;
-                    if (reqArg is not null)
-                        handlerRequestTypes.Add(reqArg);
+                    handledRequestTypes.Add(handledRequest);
                 }
             }
-        }, SymbolKind.NamedType);
+        }
 
-        context.RegisterCompilationEndAction(endContext =>
+        foreach (var requestType in requestTypes)
         {
-            foreach (var requestType in requestTypes)
-            {
-                if (!handlerRequestTypes.Contains(requestType))
-                {
-                    var diagnostic = Diagnostic.Create(
-                        Rule,
-                        requestType.Locations.FirstOrDefault() ?? Location.None,
-                        requestType.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat));
+            if (handledRequestTypes.Contains(requestType))
+                continue;
 
-                    endContext.ReportDiagnostic(diagnostic);
-                }
-            }
-        });
+            var location = requestType.Locations.FirstOrDefault(l => l.IsInSource) ?? Location.None;
+
+            var diagnostic = Diagnostic.Create(
+                Rule,
+                location,
+                requestType.ToDisplayString(SymbolDisplayFormat.MinimallyQualifiedFormat));
+
+            context.ReportDiagnostic(diagnostic);
+        }
+    }
+
+    private static IEnumerable<INamedTypeSymbol> GetAllTypes(INamespaceSymbol root)
+    {
+        foreach (var type in root.GetTypeMembers())
+        {
+            foreach (var nested in GetAllTypesRecursive(type))
+                yield return nested;
+        }
+
+        foreach (var childNs in root.GetNamespaceMembers())
+        {
+            foreach (var type in GetAllTypes(childNs))
+                yield return type;
+        }
+    }
+
+    private static IEnumerable<INamedTypeSymbol> GetAllTypesRecursive(INamedTypeSymbol type)
+    {
+        yield return type;
+
+        foreach (var nested in type.GetTypeMembers())
+        {
+            foreach (var t in GetAllTypesRecursive(nested))
+                yield return t;
+        }
     }
 }

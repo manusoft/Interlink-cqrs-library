@@ -34,9 +34,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Content Include="icon.png" Pack="true" PackagePath="" Condition="Exists('LICENSE.txt')"/>
+		<Content Include="icon.png" Pack="true" PackagePath="" Condition="Exists('icon.png')"/>
 		<Content Include="README.md" Pack="true" PackagePath="" Condition="Exists('README.md')"/>
-		<Content Include="LICENSE.txt" Pack="true" PackagePath="" Condition="Exists('icon.png')"/>
+		<Content Include="LICENSE.txt" Pack="true" PackagePath="" Condition="Exists('LICENSE.txt')"/>
 	</ItemGroup>
 
 </Project>
