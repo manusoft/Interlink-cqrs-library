@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+		<RootNamespace>Interlink.Extensions.Validation</RootNamespace>
+		<AssemblyName>Interlink.Extensions.Validation</AssemblyName>
+		<PackageId>Interlink.Extensions.Validation</PackageId>
+		<Version>1.5.0</Version>
+		<Description>FluentValidation integration for the Interlink mediator library.</Description>
+		<Authors>Manojbabu</Authors>
+		<PackageTags>interlink mediator validation fluentvalidation pipeline behavior cqrs</PackageTags>
+		<PackageProjectUrl>https://github.com/manusoft/Interlink-cqrs-library</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/manusoft/Interlink-cqrs-library</RepositoryUrl>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="FluentValidation" Version="11.*" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.*" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Interlink\Interlink.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="icon.png" Pack="true" PackagePath="" Condition="Exists('LICENSE.txt')"/>
+		<Content Include="README.md" Pack="true" PackagePath="" Condition="Exists('README.md')"/>
+		<Content Include="LICENSE.txt" Pack="true" PackagePath="" Condition="Exists('icon.png')"/>
+	</ItemGroup>
+
+</Project>

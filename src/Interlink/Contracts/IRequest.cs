@@ -1,12 +1,7 @@
 ﻿namespace Interlink.Contracts;
 
 /// <summary>
-/// Represents a request in the Interlink pipeline.
+/// Marker interface for a request that produces a response of type <typeparamref name="TResponse"/>.
 /// </summary>
-/// <typeparam name="TResponse"></typeparam>
+/// <typeparam name="TResponse">The type of the response returned by the handler.</typeparam>
 public interface IRequest<out TResponse> { }
-
-/// <summary>
-/// Represents a request in the Interlink pipeline.
-/// </summary>
-public interface IRequest { }
