@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="favicon.png" />
     <title>Documentation • Interlink</title>
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -21,18 +21,17 @@
             }
         }
     </script>
+
     <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
         }
 
-        code,
-        pre {
+        code, pre {
             font-family: 'Fira Code', monospace;
         }
 
@@ -54,8 +53,7 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
                 <a href="index.html" class="flex items-center space-x-3">
-                    <div
-                        class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-500 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-500/30">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-500 to-violet-500 flex items-center justify-center text-white font-bold shadow-lg shadow-indigo-500/30">
                         <i class="fa-solid fa-link text-lg"></i>
                     </div>
                     <span class="text-xl font-bold tracking-tight text-white">Interlink</span>
@@ -64,15 +62,16 @@
                     <span id="version-text" class="text-sm font-medium">Loading version...</span>
                 </span>
             </div>
+
             <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-300">
                 <a href="index.html" class="hover:text-white transition">Home</a>
                 <a href="docs.html" class="text-indigo-400 hover:text-indigo-300 transition">Documentation</a>
-                <a href="https://www.nuget.org/packages/Interlink" target="_blank"
-                    class="hover:text-white transition">NuGet</a>
+                <a href="https://www.nuget.org/packages/Interlink" target="_blank" class="hover:text-white transition">NuGet</a>
             </nav>
+
             <div class="flex items-center space-x-4">
-                <a href="https://github.com/manusoft/Interlink" target="_blank"
-                    class="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition border border-slate-700">
+                <a href="https://github.com/manusoft/Interlink-cqrs-library" target="_blank"
+                   class="flex items-center space-x-2 bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition border border-slate-700">
                     <i class="fa-brands fa-github text-lg"></i>
                     <span>GitHub</span>
                 </a>
@@ -82,22 +81,17 @@
 
     <!-- Hero Section -->
     <section class="relative overflow-hidden pt-16 pb-12 lg:pt-20 lg:pb-16 border-b border-slate-800/60">
-        <div
-            class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]">
-        </div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <div
-                class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-4">
+            <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-4">
                 <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
                 <span>Guides & References</span>
             </div>
             <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-white max-w-3xl mx-auto leading-tight">
-                Documentation • <span
-                    class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Interlink</span>
+                Documentation • <span class="bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent">Interlink</span>
             </h1>
-            <p class="mt-4 text-base sm:text-lg text-slate-400 max-w-xl mx-auto">
-                Comprehensive reference guides to help you implement the Interlink CQRS mediator library in your
-                production applications.
+            <p class="mt-4 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto">
+                A lightweight and minimal mediator library for .NET. Interlink helps you decouple your application using request/response and notification patterns with simple, clean code.
             </p>
         </div>
     </section>
@@ -110,55 +104,85 @@
             <div class="lg:col-span-1">
                 <div class="sticky top-24 space-y-6 doc-sidebar max-h-[calc(100vh-100px)] overflow-y-auto pr-2">
                     <div>
-                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Getting Started
-                        </h4>
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Getting Started</h4>
                         <ul class="space-y-2 text-sm">
-                            <li><a href="#introduction"
-                                    class="text-slate-300 hover:text-white transition block py-1">Introduction</a></li>
-                            <li><a href="#installation"
-                                    class="text-slate-300 hover:text-white transition block py-1">Installation</a></li>
-                            <li><a href="#di-setup"
-                                    class="text-slate-300 hover:text-white transition block py-1">Dependency
-                                    Injection</a></li>
+                            <li><a href="#introduction" class="text-slate-300 hover:text-white transition block py-1">Introduction</a></li>
+                            <li><a href="#features" class="text-slate-300 hover:text-white transition block py-1">Features</a></li>
+                            <li><a href="#installation" class="text-slate-300 hover:text-white transition block py-1">Installation</a></li>
+                            <li><a href="#di-setup" class="text-slate-300 hover:text-white transition block py-1">Dependency Injection</a></li>
                         </ul>
                     </div>
+
                     <div>
-                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Core Concepts
-                        </h4>
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Core Concepts</h4>
                         <ul class="space-y-2 text-sm">
-                            <li><a href="#requests-handlers"
-                                    class="text-slate-300 hover:text-white transition block py-1">Requests &
-                                    Handlers</a></li>
-                            <li><a href="#notifications"
-                                    class="text-slate-300 hover:text-white transition block py-1">Notifications &
-                                    Pub/Sub</a></li>
+                            <li><a href="#requests-handlers" class="text-slate-300 hover:text-white transition block py-1">Requests & Handlers</a></li>
+                            <li><a href="#notifications" class="text-slate-300 hover:text-white transition block py-1">Notifications & Pub/Sub</a></li>
+                            <li><a href="#pipeline" class="text-slate-300 hover:text-white transition block py-1">Pipeline Behaviors</a></li>
+                            <li><a href="#pre-post" class="text-slate-300 hover:text-white transition block py-1">Pre & Post Processors</a></li>
                         </ul>
                     </div>
+
                     <div>
-                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">External Links
-                        </h4>
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Extensions</h4>
                         <ul class="space-y-2 text-sm">
-                            <li><a href="https://github.com/manusoft/Interlink" target="_blank"
-                                    class="text-slate-300 hover:text-white transition block py-1 flex items-center justify-between"><span>GitHub
-                                        Repository</span> <i
-                                        class="fa-solid fa-external-link-alt text-xs text-slate-500"></i></a></li>
+                            <li><a href="#logging" class="text-slate-300 hover:text-white transition block py-1">Logging</a></li>
+                            <li><a href="#validation" class="text-slate-300 hover:text-white transition block py-1">FluentValidation</a></li>
+                            <li><a href="#aspnetcore" class="text-slate-300 hover:text-white transition block py-1">ASP.NET Core</a></li>
+                            <li><a href="#analyzer" class="text-slate-300 hover:text-white transition block py-1">Analyzer</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3">Reference</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#api-overview" class="text-slate-300 hover:text-white transition block py-1">API Overview</a></li>
+                            <li>
+                                <a href="https://github.com/manusoft/Interlink-cqrs-library" target="_blank"
+                                   class="text-slate-300 hover:text-white transition block py-1 flex items-center justify-between">
+                                    <span>GitHub Repository</span>
+                                    <i class="fa-solid fa-external-link-alt text-xs text-slate-500"></i>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
 
             <!-- Main Content Area -->
-            <div class="lg:col-span-3 space-y-12">
+            <div class="lg:col-span-3 space-y-14">
 
                 <!-- Introduction -->
                 <section id="introduction" class="scroll-mt-24">
                     <h2 class="text-2xl font-bold text-white mb-4">Introduction</h2>
                     <p class="text-slate-300 leading-relaxed mb-4">
-                        <strong>Interlink</strong> is a lightweight, minimal mediator library designed specifically for
-                        modern .NET applications. It helps decouple your controllers or services from your business
-                        logic layer using standard request/response and notification patterns without unnecessary
-                        complexity or bloated third-party dependencies.
+                        <strong>Interlink</strong> is a lightweight and minimal mediator library for .NET.
+                        It helps you decouple your application using request/response and notification patterns with simple, clean code.
                     </p>
+                    <p class="text-slate-300 leading-relaxed">
+                        Built with simplicity and performance in mind, it streamlines communication between components while keeping a clean architecture — ideal for CQRS, Clean Architecture, and modular designs.
+                    </p>
+                </section>
+
+                <hr class="border-slate-800">
+
+                <!-- Features -->
+                <section id="features" class="scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-white mb-4">Features</h2>
+                    <ul class="grid sm:grid-cols-2 gap-3 text-slate-300 text-sm">
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">🧩</span> Simple mediator pattern for request/response</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">🔁</span> Publish/Subscribe notification system</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">🔧</span> Pipeline behaviors (logging, validation, etc.)</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">🧠</span> Clean separation of concerns via handlers</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">🪝</span> Dependency injection support out of the box</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">🔄</span> Pre and Post Processors</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">🔍</span> Assembly scanning for automatic registration</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">🧪</span> Custom service factory injection</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">🔄</span> Pipeline ordering via attributes or configuration</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">🚨</span> Dedicated <code class="text-indigo-300">HandlerNotFoundException</code></li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">✅</span> Compatible with .NET Standard 2.0+ to .NET 10</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-400">📦</span> Optional packages: Logging, Validation, ASP.NET Core, Analyzer</li>
+                    </ul>
                 </section>
 
                 <hr class="border-slate-800">
@@ -167,15 +191,30 @@
                 <section id="installation" class="scroll-mt-24">
                     <h2 class="text-2xl font-bold text-white mb-4">Installation</h2>
                     <p class="text-slate-300 leading-relaxed mb-4">
-                        Install the library directly via the .NET CLI or via your NuGet Package Manager interface in
-                        Visual Studio:
+                        Install the core package via the .NET CLI:
                     </p>
-                    <div class="bg-cardBg border border-slate-800 rounded-xl p-4 flex items-center justify-between">
+                    <div class="bg-cardBg border border-slate-800 rounded-xl p-4 flex items-center justify-between mb-6">
                         <code class="text-sm text-indigo-300">dotnet add package Interlink</code>
                         <button onclick="navigator.clipboard.writeText('dotnet add package Interlink')"
-                            class="text-slate-400 hover:text-white transition px-2.5 py-1 rounded bg-slate-800 text-xs">
+                                class="text-slate-400 hover:text-white transition px-2.5 py-1 rounded bg-slate-800 text-xs">
                             <i class="fa-regular fa-copy"></i> Copy
                         </button>
+                    </div>
+
+                    <p class="text-slate-300 leading-relaxed mb-3">Optional packages:</p>
+                    <div class="space-y-2">
+                        <div class="bg-cardBg border border-slate-800 rounded-xl p-3 flex items-center justify-between">
+                            <code class="text-sm text-indigo-300">dotnet add package Interlink.Extensions.Logging</code>
+                        </div>
+                        <div class="bg-cardBg border border-slate-800 rounded-xl p-3 flex items-center justify-between">
+                            <code class="text-sm text-indigo-300">dotnet add package Interlink.Extensions.Validation</code>
+                        </div>
+                        <div class="bg-cardBg border border-slate-800 rounded-xl p-3 flex items-center justify-between">
+                            <code class="text-sm text-indigo-300">dotnet add package Interlink.AspNetCore</code>
+                        </div>
+                        <div class="bg-cardBg border border-slate-800 rounded-xl p-3 flex items-center justify-between">
+                            <code class="text-sm text-indigo-300">dotnet add package Interlink.Analyzers</code>
+                        </div>
                     </div>
                 </section>
 
@@ -185,15 +224,31 @@
                 <section id="di-setup" class="scroll-mt-24">
                     <h2 class="text-2xl font-bold text-white mb-4">Dependency Injection Setup</h2>
                     <p class="text-slate-300 leading-relaxed mb-4">
-                        Register Interlink services seamlessly inside your <code
-                            class="text-indigo-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">Program.cs</code> file:
+                        Register Interlink in <code class="text-indigo-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">Program.cs</code>:
                     </p>
-                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden">
-                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">
-                            Program.cs</div>
+
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden mb-6">
+                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">Program.cs</div>
                         <div class="p-4 overflow-x-auto">
-                            <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-slate-500">// Register Interlink handlers and mediator instance</span>
-builder.Services.AddInterlink(typeof(Program).Assembly);</code></pre>
+<pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-slate-500">// Basic registration</span>
+builder.Services.AddInterlink();
+
+<span class="text-slate-500">// Scan a specific assembly</span>
+builder.Services.AddInterlink(typeof(MyHandler).Assembly);
+
+<span class="text-slate-500">// With behaviors and custom factory</span>
+builder.Services.AddInterlink(options =>
+{
+    options.AddBehavior(typeof(LoggingBehavior&lt;,&gt;), order: 0);
+    options.AddBehavior(typeof(ValidationBehavior&lt;,&gt;), order: 1);
+    options.ServiceFactory = type => /* your custom resolver */;
+}, typeof(MyHandler).Assembly);
+
+<span class="text-slate-500">// With optional extension packages</span>
+builder.Services.AddInterlink(typeof(MyHandler).Assembly);
+builder.Services.AddInterlinkLogging();
+builder.Services.AddInterlinkValidation(typeof(MyValidator).Assembly);
+builder.Services.AddInterlinkAspNetCore();</code></pre>
                         </div>
                     </div>
                 </section>
@@ -204,27 +259,47 @@ builder.Services.AddInterlink(typeof(Program).Assembly);</code></pre>
                 <section id="requests-handlers" class="scroll-mt-24">
                     <h2 class="text-2xl font-bold text-white mb-4">Requests & Handlers</h2>
                     <p class="text-slate-300 leading-relaxed mb-4">
-                        A request represents a single operation or query that expects a specific return type. Implement
-                        <code
-                            class="text-emerald-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">IRequest&lt;TResponse&gt;</code>
-                        and its corresponding handler.
+                        A request represents a single operation that expects a response. Implement <code class="text-emerald-300 bg-slate-800 px-1.5 py-0.5 rounded text-xs">IRequest&lt;TResponse&gt;</code> and its corresponding handler.
                     </p>
-                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden">
-                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">
-                            GetUserQuery.cs</div>
-                        <div class="p-4 overflow-x-auto">
-                            <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public record</span> <span class="text-amber-300">GetUserQuery</span>(<span class="text-indigo-400">int</span> Id) : <span class="text-emerald-400">IRequest</span>&lt;<span class="text-amber-300">UserDto</span>&gt;;
 
-<span class="text-indigo-400">public class</span> <span class="text-amber-300">GetUserQueryHandler</span> : <span class="text-emerald-400">IRequestHandler</span>&lt;<span class="text-amber-300">GetUserQuery</span>, <span class="text-amber-300">UserDto</span>&gt;
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden mb-6">
+                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">GetAllPets.cs</div>
+                        <div class="p-4 overflow-x-auto">
+<pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public class</span> <span class="text-amber-300">GetAllPets</span>
 {
-    <span class="text-indigo-400">public async</span> Task&lt;<span class="text-amber-300">UserDto</span>&gt; Handle(<span class="text-amber-300">GetUserQuery</span> request, CancellationToken cancellationToken)
+    <span class="text-indigo-400">public sealed record</span> <span class="text-amber-300">Query</span> : <span class="text-emerald-400">IRequest</span>&lt;<span class="text-amber-300">List</span>&lt;<span class="text-indigo-400">string</span>&gt;&gt;;
+
+    <span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">Handler</span> : <span class="text-emerald-400">IRequestHandler</span>&lt;<span class="text-amber-300">Query</span>, <span class="text-amber-300">List</span>&lt;<span class="text-indigo-400">string</span>&gt;&gt;
     {
-        <span class="text-slate-500">// Data fetching logic implementation</span>
-        <span class="text-indigo-400">return</span> <span class="text-indigo-400">new</span> UserDto(request.Id, <span class="text-emerald-300">"Jane Doe"</span>);
+        <span class="text-indigo-400">public</span> Task&lt;<span class="text-amber-300">List</span>&lt;<span class="text-indigo-400">string</span>&gt;&gt; Handle(<span class="text-amber-300">Query</span> request, CancellationToken cancellationToken)
+        {
+            <span class="text-indigo-400">var</span> pets = <span class="text-indigo-400">new</span> List&lt;<span class="text-indigo-400">string</span>&gt; { <span class="text-emerald-300">"Dog"</span>, <span class="text-emerald-300">"Cat"</span>, <span class="text-emerald-300">"Fish"</span> };
+            <span class="text-indigo-400">return</span> Task.FromResult(pets);
+        }
     }
 }</code></pre>
                         </div>
                     </div>
+
+                    <p class="text-slate-300 leading-relaxed mb-3">Send the request with <code class="text-indigo-300">ISender</code>:</p>
+
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden">
+                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">PetController.cs</div>
+                        <div class="p-4 overflow-x-auto">
+<pre class="text-xs text-slate-300 leading-relaxed"><code>[ApiController]
+[Route(<span class="text-emerald-300">"api/[controller]"</span>)]
+<span class="text-indigo-400">public class</span> <span class="text-amber-300">PetController</span>(ISender sender) : ControllerBase
+{
+    [HttpGet]
+    <span class="text-indigo-400">public async</span> Task&lt;IActionResult&gt; GetAllPets(CancellationToken cancellationToken)
+    {
+        <span class="text-indigo-400">var</span> pets = <span class="text-indigo-400">await</span> sender.Send(<span class="text-indigo-400">new</span> GetAllPets.Query(), cancellationToken);
+        <span class="text-indigo-400">return</span> Ok(pets);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm mt-3">If no handler is registered, <code class="text-indigo-300">Send</code> throws <code class="text-indigo-300">HandlerNotFoundException</code>.</p>
                 </section>
 
                 <hr class="border-slate-800">
@@ -233,21 +308,276 @@ builder.Services.AddInterlink(typeof(Program).Assembly);</code></pre>
                 <section id="notifications" class="scroll-mt-24">
                     <h2 class="text-2xl font-bold text-white mb-4">Notifications & Pub/Sub</h2>
                     <p class="text-slate-300 leading-relaxed mb-4">
-                        Use notifications when multiple handlers need to react to a domain event or system action
-                        asynchronously.
+                        Use notifications when multiple handlers need to react to a domain event.
                     </p>
-                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden">
-                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">
-                            UserCreatedNotification.cs</div>
-                        <div class="p-4 overflow-x-auto">
-                            <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public record</span> <span class="text-amber-300">UserCreatedNotification</span>(<span class="text-indigo-400">int</span> UserId) : <span class="text-emerald-400">INotification</span>;
 
-<span class="text-indigo-400">public class</span> <span class="text-amber-300">EmailWelcomeHandler</span> : <span class="text-emerald-400">INotificationHandler</span>&lt;<span class="text-amber-300">UserCreatedNotification</span>&gt;
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden mb-6">
+                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">UserCreated.cs</div>
+                        <div class="p-4 overflow-x-auto">
+<pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">UserCreated</span>(<span class="text-indigo-400">string</span> userName) : <span class="text-emerald-400">INotification</span>
 {
-    <span class="text-indigo-400">public async</span> Task Handle(<span class="text-amber-300">UserCreatedNotification</span> notification, CancellationToken cancellationToken)
+    <span class="text-indigo-400">public string</span> UserName { <span class="text-indigo-400">get</span>; } = userName;
+}
+
+<span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">SendWelcomeEmail</span> : <span class="text-emerald-400">INotificationHandler</span>&lt;<span class="text-amber-300">UserCreated</span>&gt;
+{
+    <span class="text-indigo-400">public</span> Task Handle(<span class="text-amber-300">UserCreated</span> notification, CancellationToken cancellationToken)
     {
-        <span class="text-slate-500">// Send a welcome email to the newly created user</span>
+        Console.WriteLine($<span class="text-emerald-300">"Welcome email sent to {notification.UserName}"</span>);
+        <span class="text-indigo-400">return</span> Task.CompletedTask;
     }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-300 leading-relaxed mb-3">Publish with <code class="text-indigo-300">IPublisher</code>:</p>
+
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden">
+                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">AccountService.cs</div>
+                        <div class="p-4 overflow-x-auto">
+<pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public class</span> <span class="text-amber-300">AccountService</span>(IPublisher publisher)
+{
+    <span class="text-indigo-400">public async</span> Task RegisterUser(<span class="text-indigo-400">string</span> username)
+    {
+        <span class="text-slate-500">// Save to DB...</span>
+        <span class="text-indigo-400">await</span> publisher.Publish(<span class="text-indigo-400">new</span> UserCreated(username));
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-slate-800">
+
+                <!-- Pipeline Behaviors -->
+                <section id="pipeline" class="scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-white mb-4">Pipeline Behaviors</h2>
+                    <p class="text-slate-300 leading-relaxed mb-4">
+                        Pipeline behaviors wrap the handler and can run logic before and after it (logging, validation, timing, etc.).
+                    </p>
+
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden mb-6">
+                        <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">TimingBehavior.cs</div>
+                        <div class="p-4 overflow-x-auto">
+<pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">TimingBehavior</span>&lt;TRequest, TResponse&gt; : <span class="text-emerald-400">IPipelineBehavior</span>&lt;TRequest, TResponse&gt;
+                            <span class="text-indigo-400">where</span> TRequest : <span class="text-indigo-400">notnull</span>
+{
+    <span class="text-indigo-400">public async</span> Task&lt;TResponse&gt; Handle(
+        TRequest request,
+        RequestHandlerDelegate&lt;TResponse&gt; next,
+        CancellationToken cancellationToken)
+    {
+        <span class="text-indigo-400">var</span> sw = Stopwatch.StartNew();
+        <span class="text-indigo-400">var</span> response = <span class="text-indigo-400">await</span> next(cancellationToken);
+        sw.Stop();
+        Console.WriteLine($<span class="text-emerald-300">"{typeof(TRequest).Name} took {sw.ElapsedMilliseconds} ms"</span>);
+        <span class="text-indigo-400">return</span> response;
+    }
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <p class="text-slate-300 leading-relaxed mb-3">Ordering (lower value runs first / outermost):</p>
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden">
+                        <div class="p-4 overflow-x-auto">
+<pre class="text-xs text-slate-300 leading-relaxed"><code>[PipelineOrder(1)]
+<span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">FirstBehavior</span>&lt;TRequest, TResponse&gt; : <span class="text-emerald-400">IPipelineBehavior</span>&lt;TRequest, TResponse&gt; { ... }
+
+[PipelineOrder(2)]
+<span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">SecondBehavior</span>&lt;TRequest, TResponse&gt; : <span class="text-emerald-400">IPipelineBehavior</span>&lt;TRequest, TResponse&gt; { ... }
+
+<span class="text-slate-500">// Or via registration</span>
+options.AddBehavior(typeof(FirstBehavior&lt;,&gt;), order: 1);
+options.AddBehavior(typeof(SecondBehavior&lt;,&gt;), order: 2);</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-slate-800">
+
+                <!-- Pre & Post Processors -->
+                <section id="pre-post" class="scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-white mb-4">Pre & Post Processors</h2>
+                    <p class="text-slate-300 leading-relaxed mb-4">
+                        Pre-processors run <strong>before</strong> the pipeline. Post-processors run <strong>after</strong> a successful pipeline.
+                        They are discovered automatically by <code class="text-indigo-300">AddInterlink()</code>.
+                    </p>
+
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden">
+                        <div class="p-4 overflow-x-auto">
+<pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">MyRequestPreProcessor</span> : <span class="text-emerald-400">IRequestPreProcessor</span>&lt;GetAllPets.Query&gt;
+{
+    <span class="text-indigo-400">public</span> Task Process(GetAllPets.Query request, CancellationToken cancellationToken)
+    {
+        Console.WriteLine(<span class="text-emerald-300">"[Pre] GetAllPets"</span>);
+        <span class="text-indigo-400">return</span> Task.CompletedTask;
+    }
+}
+
+<span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">MyRequestPostProcessor</span> : <span class="text-emerald-400">IRequestPostProcessor</span>&lt;GetAllPets.Query, List&lt;<span class="text-indigo-400">string</span>&gt;&gt;
+{
+    <span class="text-indigo-400">public</span> Task Process(GetAllPets.Query request, List&lt;<span class="text-indigo-400">string</span>&gt; response, CancellationToken cancellationToken)
+    {
+        Console.WriteLine($<span class="text-emerald-300">"[Post] returned {response.Count} pets"</span>);
+        <span class="text-indigo-400">return</span> Task.CompletedTask;
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+
+                <hr class="border-slate-800">
+
+                <!-- Logging -->
+                <section id="logging" class="scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-white mb-4">Built-in Logging Behavior</h2>
+                    <div class="bg-cardBg border border-slate-800 rounded-xl p-4 mb-4">
+                        <code class="text-sm text-indigo-300">dotnet add package Interlink.Extensions.Logging</code>
+                    </div>
+                    <pre class="text-xs text-slate-300 bg-cardBg border border-slate-800 rounded-xl p-4"><code>builder.Services.AddInterlinkLogging();</code></pre>
+                    <p class="text-slate-300 text-sm mt-3">
+                        Registers <code class="text-indigo-300">LoggingBehavior&lt;TRequest, TResponse&gt;</code> which logs request start, successful completion + elapsed time, and exceptions.
+                    </p>
+                </section>
+
+                <hr class="border-slate-800">
+
+                <!-- Validation -->
+                <section id="validation" class="scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-white mb-4">FluentValidation Integration</h2>
+                    <div class="bg-cardBg border border-slate-800 rounded-xl p-4 mb-4">
+                        <code class="text-sm text-indigo-300">dotnet add package Interlink.Extensions.Validation</code>
+                    </div>
+                    <pre class="text-xs text-slate-300 bg-cardBg border border-slate-800 rounded-xl p-4 mb-4"><code>builder.Services.AddInterlinkValidation(typeof(CreateUserValidator).Assembly);</code></pre>
+
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden">
+                        <div class="p-4 overflow-x-auto">
+<pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">CreateUserValidator</span> : AbstractValidator&lt;CreateUser.Command&gt;
+{
+    <span class="text-indigo-400">public</span> CreateUserValidator()
+    {
+        RuleFor(x => x.Email).NotEmpty().EmailAddress();
+        RuleFor(x => x.Name).NotEmpty().MaximumLength(100);
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-sm mt-3">Throws <code class="text-indigo-300">FluentValidation.ValidationException</code> on failure (mapped to 400 by the ASP.NET Core filter).</p>
+                </section>
+
+                <hr class="border-slate-800">
+
+                <!-- ASP.NET Core -->
+                <section id="aspnetcore" class="scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-white mb-4">ASP.NET Core Integration</h2>
+                    <div class="bg-cardBg border border-slate-800 rounded-xl p-4 mb-4">
+                        <code class="text-sm text-indigo-300">dotnet add package Interlink.AspNetCore</code>
+                    </div>
+                    <pre class="text-xs text-slate-300 bg-cardBg border border-slate-800 rounded-xl p-4 mb-4"><code>builder.Services.AddControllers();
+builder.Services.AddInterlinkAspNetCore();  // adds InterlinkExceptionFilter</code></pre>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm text-left text-slate-300">
+                            <thead class="text-xs uppercase bg-slate-900 text-slate-400">
+                                <tr>
+                                    <th class="px-4 py-3">Exception</th>
+                                    <th class="px-4 py-3">HTTP Status</th>
+                                    <th class="px-4 py-3">Response</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-slate-800">
+                                    <td class="px-4 py-3"><code class="text-indigo-300">HandlerNotFoundException</code></td>
+                                    <td class="px-4 py-3">404</td>
+                                    <td class="px-4 py-3">ProblemDetails</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-4 py-3"><code class="text-indigo-300">ValidationException</code>*</td>
+                                    <td class="px-4 py-3">400</td>
+                                    <td class="px-4 py-3">ValidationProblemDetails</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-slate-400 text-xs mt-2">* FluentValidation support is optional and detected at runtime.</p>
+                </section>
+
+                <hr class="border-slate-800">
+
+                <!-- Analyzer -->
+                <section id="analyzer" class="scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-white mb-4">Analyzer (Missing Handler Detection)</h2>
+                    <div class="bg-cardBg border border-slate-800 rounded-xl p-4 mb-4">
+                        <code class="text-sm text-indigo-300">dotnet add package Interlink.Analyzers</code>
+                    </div>
+                    <p class="text-slate-300 leading-relaxed">
+                        Produces diagnostic <strong>ILINK001</strong> (warning) when a type implements <code class="text-indigo-300">IRequest&lt;TResponse&gt;</code>
+                        but no corresponding <code class="text-indigo-300">IRequestHandler&lt;TRequest, TResponse&gt;</code> is found in the compilation.
+                    </p>
+                </section>
+
+                <hr class="border-slate-800">
+
+                <!-- API Overview -->
+                <section id="api-overview" class="scroll-mt-24">
+                    <h2 class="text-2xl font-bold text-white mb-4">API Overview</h2>
+
+                    <h3 class="text-lg font-semibold text-white mt-6 mb-3">Core Contracts</h3>
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden mb-6">
+                        <div class="p-4 overflow-x-auto">
+<pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public interface</span> <span class="text-amber-300">IRequest</span>&lt;<span class="text-indigo-400">out</span> TResponse&gt; { }
+
+<span class="text-indigo-400">public interface</span> <span class="text-amber-300">IRequestHandler</span>&lt;<span class="text-indigo-400">in</span> TRequest, TResponse&gt;
+    <span class="text-indigo-400">where</span> TRequest : IRequest&lt;TResponse&gt;
+{
+    Task&lt;TResponse&gt; Handle(TRequest request, CancellationToken cancellationToken);
+}
+
+<span class="text-indigo-400">public interface</span> <span class="text-amber-300">INotification</span> { }
+
+<span class="text-indigo-400">public interface</span> <span class="text-amber-300">INotificationHandler</span>&lt;<span class="text-indigo-400">in</span> TNotification&gt;
+    <span class="text-indigo-400">where</span> TNotification : INotification
+{
+    Task Handle(TNotification notification, CancellationToken cancellationToken);
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-white mt-6 mb-3">Sender & Publisher</h3>
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden mb-6">
+                        <div class="p-4 overflow-x-auto">
+<pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public interface</span> <span class="text-amber-300">ISender</span>
+{
+    Task&lt;TResponse&gt; Send&lt;TResponse&gt;(IRequest&lt;TResponse&gt; request, CancellationToken cancellationToken = <span class="text-indigo-400">default</span>);
+}
+
+<span class="text-indigo-400">public interface</span> <span class="text-amber-300">IPublisher</span>
+{
+    Task Publish&lt;TNotification&gt;(TNotification notification, CancellationToken cancellationToken = <span class="text-indigo-400">default</span>)
+                            <span class="text-indigo-400">where</span> TNotification : INotification;
+}</code></pre>
+                        </div>
+                    </div>
+
+                    <h3 class="text-lg font-semibold text-white mt-6 mb-3">Pipeline & Processors</h3>
+                    <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden">
+                        <div class="p-4 overflow-x-auto">
+<pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public delegate</span> Task&lt;TResponse&gt; <span class="text-amber-300">RequestHandlerDelegate</span>&lt;TResponse&gt;(CancellationToken cancellationToken = <span class="text-indigo-400">default</span>);
+
+<span class="text-indigo-400">public interface</span> <span class="text-amber-300">IPipelineBehavior</span>&lt;<span class="text-indigo-400">in</span> TRequest, TResponse&gt;
+    <span class="text-indigo-400">where</span> TRequest : <span class="text-indigo-400">notnull</span>
+{
+    Task&lt;TResponse&gt; Handle(TRequest request, RequestHandlerDelegate&lt;TResponse&gt; next, CancellationToken cancellationToken);
+}
+
+<span class="text-indigo-400">public interface</span> <span class="text-amber-300">IRequestPreProcessor</span>&lt;<span class="text-indigo-400">in</span> TRequest&gt; <span class="text-indigo-400">where</span> TRequest : <span class="text-indigo-400">notnull</span>
+{
+    Task Process(TRequest request, CancellationToken cancellationToken);
+}
+
+<span class="text-indigo-400">public interface</span> <span class="text-amber-300">IRequestPostProcessor</span>&lt;<span class="text-indigo-400">in</span> TRequest, <span class="text-indigo-400">in</span> TResponse&gt; <span class="text-indigo-400">where</span> TRequest : <span class="text-indigo-400">notnull</span>
+{
+    Task Process(TRequest request, TResponse response, CancellationToken cancellationToken);
 }</code></pre>
                         </div>
                     </div>
@@ -259,11 +589,9 @@ builder.Services.AddInterlink(typeof(Program).Assembly);</code></pre>
 
     <!-- Footer -->
     <footer class="border-t border-slate-800 py-12 bg-darkBg mt-20">
-        <div
-            class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex items-center space-x-3">
-                <div
-                    class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
+                <div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-bold text-sm">
                     <i class="fa-solid fa-link"></i>
                 </div>
                 <span class="font-bold text-white text-sm">Interlink Documentation</span>
@@ -272,23 +600,22 @@ builder.Services.AddInterlink(typeof(Program).Assembly);</code></pre>
                 Released under the MIT License. Built for .NET developers.
             </p>
             <div class="flex space-x-6 text-slate-400">
-                <a href="https://github.com/manusoft/Interlink" target="_blank"
-                    class="hover:text-white transition text-sm">
+                <a href="https://github.com/manusoft/Interlink-cqrs-library" target="_blank" class="hover:text-white transition text-sm">
                     <i class="fa-brands fa-github text-lg"></i>
                 </a>
             </div>
         </div>
     </footer>
+
     <script>
-        fetch('https://api.github.com/repos/manusoft/Interlink/releases/latest')
+        fetch('https://api.github.com/repos/manusoft/Interlink-cqrs-library/releases/latest')
             .then(r => r.json())
             .then(data => {
-                document.getElementById('version-text').textContent = data.tag_name;
+                document.getElementById('version-text').textContent = data.tag_name || "Latest";
             })
             .catch(() => {
-                document.getElementById('version-text').textContent = "Latest Version Available";
+                document.getElementById('version-text').textContent = "Latest";
             });
     </script>
 </body>
-
 </html>

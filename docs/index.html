@@ -118,42 +118,157 @@
     <!-- Features Section -->
     <section id="features" class="py-20 border-t border-slate-800/60 bg-slate-900/40">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Header -->
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Designed for Simplicity and
-                    Performance</h2>
-                <p class="mt-4 text-slate-400">Interlink gives you the core benefits of a mediator pattern without the
-                    boilerplate bloat.</p>
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+                    Designed for Simplicity and
+                    Performance
+                </h2>
+                <p class="mt-4 text-slate-400">
+                    Interlink gives you the core benefits of a mediator pattern without the
+                    boilerplate bloat.
+                </p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Core Features Grid -->
+            <!-- Core Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+
                 <!-- Feature 1 -->
-                <div class="bg-cardBg p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition">
-                    <div
-                        class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-xl mb-6">
+                <div class="bg-cardBg p-7 rounded-2xl border border-slate-800 hover:border-slate-700 transition">
+                    <div class="w-11 h-11 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-lg mb-5">
                         <i class="fa-solid fa-feather"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Ultra Lightweight</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Minimal footprint with zero unnecessary
-                        dependencies, designed explicitly to stay out of your way and run blazing fast.</p>
+                    <h3 class="text-lg font-semibold text-white mb-2">Ultra Lightweight</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Minimal footprint with zero unnecessary dependencies. Built to stay out of your way and run blazing fast on .NET Standard 2.0+ through .NET 10.
+                    </p>
                 </div>
+
                 <!-- Feature 2 -->
-                <div class="bg-cardBg p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition">
-                    <div
-                        class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-xl mb-6">
+                <div class="bg-cardBg p-7 rounded-2xl border border-slate-800 hover:border-slate-700 transition">
+                    <div class="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 text-lg mb-5">
                         <i class="fa-solid fa-network-wired"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Request & Response</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Encapsulate application behavior cleanly using
-                        request/response handlers built on top of robust generic constraints.</p>
+                    <h3 class="text-lg font-semibold text-white mb-2">Request & Response</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Clean request/response pattern with strong typing. Encapsulate queries and commands using <code class="text-indigo-300 text-xs">IRequest&lt;T&gt;</code> and dedicated handlers.
+                    </p>
                 </div>
+
                 <!-- Feature 3 -->
-                <div class="bg-cardBg p-8 rounded-2xl border border-slate-800 hover:border-slate-700 transition">
-                    <div
-                        class="w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 text-xl mb-6">
+                <div class="bg-cardBg p-7 rounded-2xl border border-slate-800 hover:border-slate-700 transition">
+                    <div class="w-11 h-11 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 text-lg mb-5">
                         <i class="fa-solid fa-bullhorn"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-white mb-2">Notification Support</h3>
-                    <p class="text-slate-400 text-sm leading-relaxed">Publish system-wide events and broadcast domain
-                        notifications easily to multiple handlers with zero friction.</p>
+                    <h3 class="text-lg font-semibold text-white mb-2">Notifications (Pub/Sub)</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Broadcast domain events to multiple handlers with zero friction using the simple <code class="text-indigo-300 text-xs">INotification</code> + <code class="text-indigo-300 text-xs">IPublisher</code> model.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-cardBg p-7 rounded-2xl border border-slate-800 hover:border-slate-700 transition">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg mb-5">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Pipeline Behaviors</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Add cross-cutting concerns (logging, validation, timing, etc.) with ordered pipeline behaviors. Control execution order via attributes or configuration.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-cardBg p-7 rounded-2xl border border-slate-800 hover:border-slate-700 transition">
+                    <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-lg mb-5">
+                        <i class="fa-solid fa-arrows-spin"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Pre & Post Processors</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Run logic before the pipeline and after a successful handler execution. Automatically discovered and registered by <code class="text-indigo-300 text-xs">AddInterlink()</code>.
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-cardBg p-7 rounded-2xl border border-slate-800 hover:border-slate-700 transition">
+                    <div class="w-11 h-11 rounded-xl bg-sky-500/10 border border-sky-500/20 flex items-center justify-center text-sky-400 text-lg mb-5">
+                        <i class="fa-solid fa-puzzle-piece"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white mb-2">Easy DI Registration</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        One-line setup with assembly scanning. Optional custom service factory and full control over pipeline behavior ordering.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Extensions Section -->
+            <div class="mt-4">
+                <div class="text-center mb-10">
+                    <h3 class="text-2xl font-bold text-white">Optional Extensions</h3>
+                    <p class="mt-2 text-slate-400 text-sm max-w-xl mx-auto">
+                        Keep the core package minimal. Add only the features you need.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+
+                    <!-- Logging -->
+                    <div class="bg-cardBg/80 p-6 rounded-xl border border-slate-800 hover:border-orange-500/40 transition group">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-9 h-9 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 text-sm">
+                                <i class="fa-solid fa-file-lines"></i>
+                            </div>
+                            <h4 class="font-semibold text-white text-sm">Logging</h4>
+                        </div>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-3">
+                            Built-in <code class="text-orange-300">LoggingBehavior</code> that logs request start, duration, and exceptions.
+                        </p>
+                        <code class="text-[11px] text-orange-300/80 block truncate">Interlink.Extensions.Logging</code>
+                    </div>
+
+                    <!-- Validation -->
+                    <div class="bg-cardBg/80 p-6 rounded-xl border border-slate-800 hover:border-pink-500/40 transition group">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-9 h-9 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 text-sm">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <h4 class="font-semibold text-white text-sm">FluentValidation</h4>
+                        </div>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-3">
+                            Automatic validation pipeline. Throws <code class="text-pink-300">ValidationException</code> on failure.
+                        </p>
+                        <code class="text-[11px] text-pink-300/80 block truncate">Interlink.Extensions.Validation</code>
+                    </div>
+
+                    <!-- ASP.NET Core -->
+                    <div class="bg-cardBg/80 p-6 rounded-xl border border-slate-800 hover:border-red-500/40 transition group">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-9 h-9 rounded-lg bg-red-500/10 border border-red-500/20 flex items-center justify-center text-red-400 text-sm">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <h4 class="font-semibold text-white text-sm">ASP.NET Core</h4>
+                        </div>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-3">
+                            Exception filter that maps <code class="text-red-300">HandlerNotFoundException</code> → 404 and validation errors → 400.
+                        </p>
+                        <code class="text-[11px] text-red-300/80 block truncate">Interlink.AspNetCore</code>
+                    </div>
+
+                    <!-- Analyzers -->
+                    <div class="bg-cardBg/80 p-6 rounded-xl border border-slate-800 hover:border-emerald-500/40 transition group">
+                        <div class="flex items-center gap-3 mb-3">
+                            <div class="w-9 h-9 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-sm">
+                                <i class="fa-solid fa-magnifying-glass-chart"></i>
+                            </div>
+                            <h4 class="font-semibold text-white text-sm">Analyzers</h4>
+                        </div>
+                        <p class="text-slate-400 text-xs leading-relaxed mb-3">
+                            Roslyn analyzer that warns (ILINK001) when a request has no matching handler.
+                        </p>
+                        <code class="text-[11px] text-emerald-300/80 block truncate">Interlink.Analyzers</code>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -196,18 +311,18 @@
                 <div class="bg-cardBg rounded-2xl border border-slate-800 overflow-hidden shadow-xl">
                     <div class="bg-slate-900 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
                         <span class="text-xs font-medium text-slate-400"><i
-                                class="fa-solid fa-bolt text-purple-400 mr-2"></i>2. Send via Mediator</span>
+                                class="fa-solid fa-bolt text-purple-400 mr-2"></i>2. Send via Interlink</span>
                     </div>
                     <div class="p-6 overflow-x-auto">
                         <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">[ApiController]</span>
 <span class="text-indigo-400">[Route</span>(<span class="text-emerald-300">"api/users"</span>)<span class="text-indigo-400">]</span>
-<span class="text-indigo-400">public class</span> <span class="text-amber-300">UsersController</span>(<span class="text-emerald-400">IMediator</span> mediator) : ControllerBase
+<span class="text-indigo-400">public class</span> <span class="text-amber-300">UsersController</span>(<span class="text-emerald-400">ISender</span> sender) : ControllerBase
 {
     <span class="text-indigo-400">[HttpGet</span>(<span class="text-emerald-300">"{id}"</span>)<span class="text-indigo-400">]</span>
     <span class="text-indigo-400">public async</span> Task&lt;IActionResult&gt; Get(<span class="text-indigo-400">int</span> id)
     {
         <span class="text-indigo-400">var</span> query = <span class="text-indigo-400">new</span> <span class="text-amber-300">GetUserQuery</span>(id);
-        <span class="text-indigo-400">var</span> result = <span class="text-indigo-400">await</span> mediator.Send(query);
+        <span class="text-indigo-400">var</span> result = <span class="text-indigo-400">await</span> sender.Send(query);
         
         <span class="text-indigo-400">return</span> Ok(result);
     }
