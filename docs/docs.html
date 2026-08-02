@@ -270,14 +270,14 @@ builder.Services.AddInterlinkAspNetCore();</code></pre>
                         <div class="p-4 overflow-x-auto">
 <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public class</span> <span class="text-amber-300">GetAllPets</span>
 {
-                            <span class="text-indigo-400">public sealed record</span> <span class="text-amber-300">Query</span> : <span class="text-emerald-400">IRequest</span>&lt;<span class="text-amber-300">List</span>&lt;<span class="text-indigo-400">string</span>&gt;&gt;;
+    <span class="text-indigo-400">public sealed record</span> <span class="text-amber-300">Query</span> : <span class="text-emerald-400">IRequest</span>&lt;<span class="text-amber-300">List</span>&lt;<span class="text-indigo-400">string</span>&gt;&gt;;
 
-                            <span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">Handler</span> : <span class="text-emerald-400">IRequestHandler</span>&lt;<span class="text-amber-300">Query</span>, <span class="text-amber-300">List</span>&lt;<span class="text-indigo-400">string</span>&gt;&gt;
+    <span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">Handler</span> : <span class="text-emerald-400">IRequestHandler</span>&lt;<span class="text-amber-300">Query</span>, <span class="text-amber-300">List</span>&lt;<span class="text-indigo-400">string</span>&gt;&gt;
     {
-                            <span class="text-indigo-400">public</span> Task&lt;<span class="text-amber-300">List</span>&lt;<span class="text-indigo-400">string</span>&gt;&gt; Handle(<span class="text-amber-300">Query</span> request, CancellationToken cancellationToken)
+        <span class="text-indigo-400">public</span> Task&lt;<span class="text-amber-300">List</span>&lt;<span class="text-indigo-400">string</span>&gt;&gt; Handle(<span class="text-amber-300">Query</span> request, CancellationToken cancellationToken)
         {
-                            <span class="text-indigo-400">var</span> pets = <span class="text-indigo-400">new</span> List&lt;<span class="text-indigo-400">string</span>&gt; { <span class="text-emerald-300">"Dog"</span>, <span class="text-emerald-300">"Cat"</span>, <span class="text-emerald-300">"Fish"</span> };
-                            <span class="text-indigo-400">return</span> Task.FromResult(pets);
+            <span class="text-indigo-400">var</span> pets = <span class="text-indigo-400">new</span> List&lt;<span class="text-indigo-400">string</span>&gt; { <span class="text-emerald-300">"Dog"</span>, <span class="text-emerald-300">"Cat"</span>, <span class="text-emerald-300">"Fish"</span> };
+            <span class="text-indigo-400">return</span> Task.FromResult(pets);
         }
     }
 }</code></pre>
@@ -294,10 +294,10 @@ builder.Services.AddInterlinkAspNetCore();</code></pre>
 <span class="text-indigo-400">public class</span> <span class="text-amber-300">PetController</span>(ISender sender) : ControllerBase
 {
     [HttpGet]
-                            <span class="text-indigo-400">public async</span> Task&lt;IActionResult&gt; GetAllPets(CancellationToken cancellationToken)
+    <span class="text-indigo-400">public async</span> Task&lt;IActionResult&gt; GetAllPets(CancellationToken cancellationToken)
     {
-                            <span class="text-indigo-400">var</span> pets = <span class="text-indigo-400">await</span> sender.Send(<span class="text-indigo-400">new</span> GetAllPets.Query(), cancellationToken);
-                            <span class="text-indigo-400">return</span> Ok(pets);
+        <span class="text-indigo-400">var</span> pets = <span class="text-indigo-400">await</span> sender.Send(<span class="text-indigo-400">new</span> GetAllPets.Query(), cancellationToken);
+        <span class="text-indigo-400">return</span> Ok(pets);
     }
 }</code></pre>
                         </div>
@@ -319,15 +319,15 @@ builder.Services.AddInterlinkAspNetCore();</code></pre>
                         <div class="p-4 overflow-x-auto">
 <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">UserCreated</span>(<span class="text-indigo-400">string</span> userName) : <span class="text-emerald-400">INotification</span>
 {
-                            <span class="text-indigo-400">public string</span> UserName { <span class="text-indigo-400">get</span>; } = userName;
+    <span class="text-indigo-400">public string</span> UserName { <span class="text-indigo-400">get</span>; } = userName;
 }
 
 <span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">SendWelcomeEmail</span> : <span class="text-emerald-400">INotificationHandler</span>&lt;<span class="text-amber-300">UserCreated</span>&gt;
 {
-                            <span class="text-indigo-400">public</span> Task Handle(<span class="text-amber-300">UserCreated</span> notification, CancellationToken cancellationToken)
+    <span class="text-indigo-400">public</span> Task Handle(<span class="text-amber-300">UserCreated</span> notification, CancellationToken cancellationToken)
     {
         Console.WriteLine($<span class="text-emerald-300">"Welcome email sent to {notification.UserName}"</span>);
-                            <span class="text-indigo-400">return</span> Task.CompletedTask;
+        <span class="text-indigo-400">return</span> Task.CompletedTask;
     }
 }</code></pre>
                         </div>
@@ -340,10 +340,10 @@ builder.Services.AddInterlinkAspNetCore();</code></pre>
                         <div class="p-4 overflow-x-auto">
 <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public class</span> <span class="text-amber-300">AccountService</span>(IPublisher publisher)
 {
-                            <span class="text-indigo-400">public async</span> Task RegisterUser(<span class="text-indigo-400">string</span> username)
+    <span class="text-indigo-400">public async</span> Task RegisterUser(<span class="text-indigo-400">string</span> username)
     {
-                            <span class="text-slate-500">// Save to DB...</span>
-                            <span class="text-indigo-400">await</span> publisher.Publish(<span class="text-indigo-400">new</span> UserCreated(username));
+        <span class="text-slate-500">// Save to DB...</span>
+        <span class="text-indigo-400">await</span> publisher.Publish(<span class="text-indigo-400">new</span> UserCreated(username));
     }
 }</code></pre>
                         </div>
@@ -363,18 +363,18 @@ builder.Services.AddInterlinkAspNetCore();</code></pre>
                         <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">TimingBehavior.cs</div>
                         <div class="p-4 overflow-x-auto">
 <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">TimingBehavior</span>&lt;TRequest, TResponse&gt; : <span class="text-emerald-400">IPipelineBehavior</span>&lt;TRequest, TResponse&gt;
-                            <span class="text-indigo-400">where</span> TRequest : <span class="text-indigo-400">notnull</span>
+    <span class="text-indigo-400">where</span> TRequest : <span class="text-indigo-400">notnull</span>
 {
-                            <span class="text-indigo-400">public async</span> Task&lt;TResponse&gt; Handle(
+    <span class="text-indigo-400">public async</span> Task&lt;TResponse&gt; Handle(
         TRequest request,
         RequestHandlerDelegate&lt;TResponse&gt; next,
         CancellationToken cancellationToken)
     {
-                            <span class="text-indigo-400">var</span> sw = Stopwatch.StartNew();
-                            <span class="text-indigo-400">var</span> response = <span class="text-indigo-400">await</span> next(cancellationToken);
+        <span class="text-indigo-400">var</span> sw = Stopwatch.StartNew();
+        <span class="text-indigo-400">var</span> response = <span class="text-indigo-400">await</span> next(cancellationToken);
         sw.Stop();
         Console.WriteLine($<span class="text-emerald-300">"{typeof(TRequest).Name} took {sw.ElapsedMilliseconds} ms"</span>);
-                            <span class="text-indigo-400">return</span> response;
+        <span class="text-indigo-400">return</span> response;
     }
 }</code></pre>
                         </div>
@@ -410,19 +410,19 @@ options.AddBehavior(typeof(SecondBehavior&lt;,&gt;), order: 2);</code></pre>
                         <div class="p-4 overflow-x-auto">
 <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">MyRequestPreProcessor</span> : <span class="text-emerald-400">IRequestPreProcessor</span>&lt;GetAllPets.Query&gt;
 {
-                            <span class="text-indigo-400">public</span> Task Process(GetAllPets.Query request, CancellationToken cancellationToken)
+    <span class="text-indigo-400">public</span> Task Process(GetAllPets.Query request, CancellationToken cancellationToken)
     {
         Console.WriteLine(<span class="text-emerald-300">"[Pre] GetAllPets"</span>);
-                            <span class="text-indigo-400">return</span> Task.CompletedTask;
+        <span class="text-indigo-400">return</span> Task.CompletedTask;
     }
 }
 
 <span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">MyRequestPostProcessor</span> : <span class="text-emerald-400">IRequestPostProcessor</span>&lt;GetAllPets.Query, List&lt;<span class="text-indigo-400">string</span>&gt;&gt;
 {
-                            <span class="text-indigo-400">public</span> Task Process(GetAllPets.Query request, List&lt;<span class="text-indigo-400">string</span>&gt; response, CancellationToken cancellationToken)
+    <span class="text-indigo-400">public</span> Task Process(GetAllPets.Query request, List&lt;<span class="text-indigo-400">string</span>&gt; response, CancellationToken cancellationToken)
     {
         Console.WriteLine($<span class="text-emerald-300">"[Post] returned {response.Count} pets"</span>);
-                            <span class="text-indigo-400">return</span> Task.CompletedTask;
+        <span class="text-indigo-400">return</span> Task.CompletedTask;
     }
 }</code></pre>
                         </div>
@@ -457,7 +457,7 @@ options.AddBehavior(typeof(SecondBehavior&lt;,&gt;), order: 2);</code></pre>
                         <div class="p-4 overflow-x-auto">
 <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public sealed class</span> <span class="text-amber-300">CreateUserValidator</span> : AbstractValidator&lt;CreateUser.Command&gt;
 {
-                            <span class="text-indigo-400">public</span> CreateUserValidator()
+    <span class="text-indigo-400">public</span> CreateUserValidator()
     {
         RuleFor(x => x.Email).NotEmpty().EmailAddress();
         RuleFor(x => x.Name).NotEmpty().MaximumLength(100);
@@ -531,7 +531,7 @@ builder.Services.AddInterlinkAspNetCore();  // adds InterlinkExceptionFilter</co
 <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public interface</span> <span class="text-amber-300">IRequest</span>&lt;<span class="text-indigo-400">out</span> TResponse&gt; { }
 
 <span class="text-indigo-400">public interface</span> <span class="text-amber-300">IRequestHandler</span>&lt;<span class="text-indigo-400">in</span> TRequest, TResponse&gt;
-                            <span class="text-indigo-400">where</span> TRequest : IRequest&lt;TResponse&gt;
+    <span class="text-indigo-400">where</span> TRequest : IRequest&lt;TResponse&gt;
 {
     Task&lt;TResponse&gt; Handle(TRequest request, CancellationToken cancellationToken);
 }
@@ -539,7 +539,7 @@ builder.Services.AddInterlinkAspNetCore();  // adds InterlinkExceptionFilter</co
 <span class="text-indigo-400">public interface</span> <span class="text-amber-300">INotification</span> { }
 
 <span class="text-indigo-400">public interface</span> <span class="text-amber-300">INotificationHandler</span>&lt;<span class="text-indigo-400">in</span> TNotification&gt;
-                            <span class="text-indigo-400">where</span> TNotification : INotification
+    <span class="text-indigo-400">where</span> TNotification : INotification
 {
     Task Handle(TNotification notification, CancellationToken cancellationToken);
 }</code></pre>
@@ -557,7 +557,7 @@ builder.Services.AddInterlinkAspNetCore();  // adds InterlinkExceptionFilter</co
 <span class="text-indigo-400">public interface</span> <span class="text-amber-300">IPublisher</span>
 {
     Task Publish&lt;TNotification&gt;(TNotification notification, CancellationToken cancellationToken = <span class="text-indigo-400">default</span>)
-                            <span class="text-indigo-400">where</span> TNotification : INotification;
+        <span class="text-indigo-400">where</span> TNotification : INotification;
 }</code></pre>
                         </div>
                     </div>
@@ -568,7 +568,7 @@ builder.Services.AddInterlinkAspNetCore();  // adds InterlinkExceptionFilter</co
 <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public delegate</span> Task&lt;TResponse&gt; <span class="text-amber-300">RequestHandlerDelegate</span>&lt;TResponse&gt;(CancellationToken cancellationToken = <span class="text-indigo-400">default</span>);
 
 <span class="text-indigo-400">public interface</span> <span class="text-amber-300">IPipelineBehavior</span>&lt;<span class="text-indigo-400">in</span> TRequest, TResponse&gt;
-                            <span class="text-indigo-400">where</span> TRequest : <span class="text-indigo-400">notnull</span>
+    <span class="text-indigo-400">where</span> TRequest : <span class="text-indigo-400">notnull</span>
 {
     Task&lt;TResponse&gt; Handle(TRequest request, RequestHandlerDelegate&lt;TResponse&gt; next, CancellationToken cancellationToken);
 }
