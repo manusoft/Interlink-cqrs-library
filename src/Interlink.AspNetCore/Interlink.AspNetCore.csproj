@@ -10,6 +10,7 @@
 		<PackageId>Interlink.AspNetCore</PackageId>
 		<Version>1.5.1</Version>
 		<Description>ASP.NET Core integration for the Interlink mediator library (filters, exception handling, helpers).</Description>
+		<Copyright>Copyright © 2025-2026 ManuHub</Copyright>
 		<Authors>Manojbabu</Authors>
 		<PackageTags>interlink mediator aspnetcore filters cqrs</PackageTags>
 		<PackageProjectUrl>https://github.com/manusoft/Interlink</PackageProjectUrl>

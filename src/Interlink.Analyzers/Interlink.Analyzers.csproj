@@ -9,8 +9,9 @@
 		<RootNamespace>Interlink.Analyzers</RootNamespace>
 		<AssemblyName>Interlink.Analyzers</AssemblyName>
 		<PackageId>Interlink.Analyzers</PackageId>
-		<Version>1.5.1</Version>
+		<Version>1.5.2</Version>
 		<Description>Roslyn analyzer that detects requests without corresponding handlers for the Interlink mediator library.</Description>
+		<Copyright>Copyright © 2025-2026 ManuHub</Copyright>
 		<Authors>Manojbabu</Authors>
 		<PackageTags>interlink mediator analyzer roslyn cqrs</PackageTags>
 		<PackageProjectUrl>https://github.com/manusoft/Interlink</PackageProjectUrl>
@@ -26,9 +27,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Content Include="icon.png" Pack="true" PackagePath="" Condition="Exists('icon.png')"/>
-		<Content Include="README.md" Pack="true" PackagePath="" Condition="Exists('README.md')"/>
-		<Content Include="LICENSE.txt" Pack="true" PackagePath="" Condition="Exists('LICENSE.txt')"/>
+		<Content Include="icon.png" Pack="true" PackagePath="" Condition="Exists('icon.png')" />
+		<Content Include="README.md" Pack="true" PackagePath="" Condition="Exists('README.md')" />
+		<Content Include="LICENSE.txt" Pack="true" PackagePath="" Condition="Exists('LICENSE.txt')" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -42,7 +43,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="$(OutputPath)$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
-	</ItemGroup>
+		<!-- Explicitly register analyzer for PackageReference consumers -->
+		<None Include="build\Interlink.Analyzers.props"
+			  Pack="true"
+			  PackagePath="build\Interlink.Analyzers.props" />
 
+		<None Include="$(OutputPath)$(AssemblyName).dll"
+			  Pack="true"
+			  PackagePath="analyzers\dotnet\cs"
+			  Visible="false" />
+	</ItemGroup>
 </Project>
