@@ -15,7 +15,7 @@
 	<Copyright>Copyright © 2025-2026 ManuHub</Copyright>
 	<Authors>Manojbabu</Authors>
 	<PackageTags>mediator cqrs request response notification query command middleware behaviours pre-post dotnet csharp interlink architecture dependency-injection clean-architecture lightweight</PackageTags>
-	<PackageProjectUrl>https://github.com/manusoft/Interlink</PackageProjectUrl>
+	<PackageProjectUrl>https://manusoft.github.io/Interlink</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/manusoft/Interlink-cqrs-library</RepositoryUrl>
 	<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	<GenerateDocumentationFile>true</GenerateDocumentationFile>
