@@ -129,12 +129,12 @@ public class GetAllPets
 ```csharp
 [ApiController]
 [Route("api/[controller]")]
-public class PetController(ISender sender) : ControllerBase
+public class PetController(IMediator mediator) : ControllerBase
 {
     [HttpGet]
     public async Task<IActionResult> GetAllPets(CancellationToken cancellationToken)
     {
-        var pets = await sender.Send(new GetAllPets.Query(), cancellationToken);
+        var pets = await mediator.Send(new GetAllPets.Query(), cancellationToken);
         return Ok(pets);
     }
 }
@@ -180,12 +180,12 @@ public sealed class WriteAuditLog : INotificationHandler<UserCreated>
 ### 3. Publish
 
 ```csharp
-public class AccountService(IPublisher publisher)
+public class AccountService(IMediator mediator)
 {
     public async Task RegisterUser(string username)
     {
         // Save to DB...
-        await publisher.Publish(new UserCreated(username));
+        await mediator.Publish(new UserCreated(username));
     }
 }
 ```

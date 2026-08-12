@@ -13,10 +13,10 @@ public class PrePostProcessorTests
         services.AddInterlink(assemblies: [typeof(SampleRequestHandler).Assembly]);
 
         var provider = services.BuildServiceProvider();
-        var sender = provider.GetRequiredService<ISender>();
+        var mediator = provider.GetRequiredService<IMediator>();
 
         // Act
-        var result = await sender.Send(new SampleRequest());
+        var result = await mediator.Send(new SampleRequest());
 
         // Assert
         Assert.Equal("Handled", result);

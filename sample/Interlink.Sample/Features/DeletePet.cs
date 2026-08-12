@@ -7,10 +7,10 @@ namespace Interlink.Sample.Features;
 
 public class DeletePet
 {
-    public record Command(int Id) : IRequest<Pet>;
-    public class Handler(AppDbContext context) : IRequestHandler<Command, Pet>
+    public record Command(int Id) : IRequest;
+    public class Handler(AppDbContext context) : IRequestHandler<Command>
     {
-        public async Task<Pet> Handle(Command request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(Command request, CancellationToken cancellationToken)
         {
             var pet = await context.Pets.FindAsync(request.Id);
             if (pet == null)
@@ -19,7 +19,7 @@ public class DeletePet
             }
             context.Pets.Remove(pet);
             await context.SaveChangesAsync(cancellationToken);
-            return pet;
+            return Unit.Value;
         }
     }
 }

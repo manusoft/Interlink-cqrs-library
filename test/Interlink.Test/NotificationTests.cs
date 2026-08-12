@@ -16,13 +16,13 @@ public class NotificationTests
         services.AddInterlink(assemblies: new[] { typeof(MyTestNotification).Assembly });
 
         var provider = services.BuildServiceProvider();
-        var publisher = provider.GetRequiredService<IPublisher>();
+        var mediator = provider.GetRequiredService<IMediator>();
 
         var counter = provider.GetRequiredService<NotificationCounter>();
         counter.Reset();
 
         // Act
-        await publisher.Publish(new MyTestNotification());
+        await mediator.Publish(new MyTestNotification());
 
         // Assert
         Assert.True(counter.Count >= 2); // expecting 2 handlers were invoked
