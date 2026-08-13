@@ -289,17 +289,19 @@ builder.Services.AddInterlinkAspNetCore();</code></pre>
                     <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden">
                         <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">PetController.cs</div>
                         <div class="p-4 overflow-x-auto">
-<pre class="text-xs text-slate-300 leading-relaxed"><code>[ApiController]
-[Route(<span class="text-emerald-300">"api/[controller]"</span>)]
-<span class="text-indigo-400">public class</span> <span class="text-amber-300">PetController</span>(ISender sender) : ControllerBase
-{
-    [HttpGet]
-    <span class="text-indigo-400">public async</span> Task&lt;IActionResult&gt; GetAllPets(CancellationToken cancellationToken)
+<pre class="text-xs text-slate-300 leading-relaxed"><code>
+    [ApiController]
+    [Route(<span class="text-emerald-300">"api/[controller]"</span>)]
+    <span class="text-indigo-400">public class</span> <span class="text-amber-300">PetController</span>(IMediator mediator) : ControllerBase
     {
-        <span class="text-indigo-400">var</span> pets = <span class="text-indigo-400">await</span> sender.Send(<span class="text-indigo-400">new</span> GetAllPets.Query(), cancellationToken);
-        <span class="text-indigo-400">return</span> Ok(pets);
+        [HttpGet]
+        <span class="text-indigo-400">public async</span> Task&lt;IActionResult&gt; GetAllPets(CancellationToken cancellationToken)
+        {
+            <span class="text-indigo-400">var</span> pets = <span class="text-indigo-400">await</span> mediator.Send(<span class="text-indigo-400">new</span> GetAllPets.Query(), cancellationToken);
+            <span class="text-indigo-400">return</span> Ok(pets);
+        }
     }
-}</code></pre>
+</code></pre>
                         </div>
                     </div>
                     <p class="text-slate-400 text-sm mt-3">If no handler is registered, <code class="text-indigo-300">Send</code> throws <code class="text-indigo-300">HandlerNotFoundException</code>.</p>
@@ -338,14 +340,16 @@ builder.Services.AddInterlinkAspNetCore();</code></pre>
                     <div class="bg-cardBg rounded-xl border border-slate-800 overflow-hidden">
                         <div class="bg-slate-900 px-4 py-2 border-b border-slate-800 text-xs text-slate-400 font-mono">AccountService.cs</div>
                         <div class="p-4 overflow-x-auto">
-<pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">public class</span> <span class="text-amber-300">AccountService</span>(IPublisher publisher)
-{
-    <span class="text-indigo-400">public async</span> Task RegisterUser(<span class="text-indigo-400">string</span> username)
+<pre class="text-xs text-slate-300 leading-relaxed"><code>
+    <span class="text-indigo-400">public class</span> <span class="text-amber-300">AccountService</span>(IMediator mediator)
     {
-        <span class="text-slate-500">// Save to DB...</span>
-        <span class="text-indigo-400">await</span> publisher.Publish(<span class="text-indigo-400">new</span> UserCreated(username));
+        <span class="text-indigo-400">public async</span> Task RegisterUser(<span class="text-indigo-400">string</span> username)
+        {
+            <span class="text-slate-500">// Save to DB...</span>
+            <span class="text-indigo-400">await</span> mediator.Publish(<span class="text-indigo-400">new</span> UserCreated(username));
+        }
     }
-}</code></pre>
+</code></pre>
                         </div>
                     </div>
                 </section>

@@ -1,14 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>netstandard2.0;net10.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.0;net8.0;net10.0</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
 		<RootNamespace>Interlink.Extensions.Validation</RootNamespace>
 		<AssemblyName>Interlink.Extensions.Validation</AssemblyName>
 		<PackageId>Interlink.Extensions.Validation</PackageId>
-		<Version>1.5.1</Version>
+		<Version>1.5.2</Version>
 		<Description>FluentValidation integration for the Interlink mediator library.</Description>
 		<Copyright>Copyright © 2025-2026 ManuHub</Copyright>
 		<Authors>Manojbabu</Authors>
@@ -23,7 +23,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FluentValidation" Version="11.*" />
+		<PackageReference Include="FluentValidation" Version="12.*"  Condition="'$(TargetFramework)' != 'netstandard2.0'"/>
+		<PackageReference Include="FluentValidation" Version="11.*"  Condition="'$(TargetFramework)' == 'netstandard2.0'"/>
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.*" />
 	</ItemGroup>
 

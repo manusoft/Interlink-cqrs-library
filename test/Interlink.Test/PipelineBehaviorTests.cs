@@ -9,10 +9,10 @@ public class PipelineBehaviorTests
         services.AddInterlink(opt => opt.AddBehavior(typeof(LoggingBehavior<,>)), typeof(PipelineBehaviorTests).Assembly);
 
         var provider = services.BuildServiceProvider();
-        var sender = provider.GetRequiredService<ISender>();
+        var mediator = provider.GetRequiredService<IMediator>();
 
         LoggingBehavior<Ping, string>.Logs.Clear();
-        var response = await sender.Send(new Ping());
+        var response = await mediator.Send(new Ping());
 
         Assert.Equal("Pong", response);
         Assert.Contains("[Before] Ping", LoggingBehavior<Ping, string>.Logs);

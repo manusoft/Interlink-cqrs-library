@@ -1,10 +1,10 @@
 ﻿namespace Interlink.Sample.Notification;
 
-public class AccountService(IPublisher publisher)
+public class AccountService(IMediator mediator)
 {
     public async Task RegisterUser(string username)
     {
         // Save to DB...
-        await publisher.Publish(new UserCreated(username));
+        await mediator.Publish(new UserCreated(username));
     }
 }

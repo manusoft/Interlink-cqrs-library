@@ -68,6 +68,9 @@ public static class ServiceCollectionExtensions
             services.AddScoped<IPublisher, Publisher>();
         }
 
+        // Mediator (composes ISender + IPublisher)
+        services.AddScoped<IMediator, Mediator>();
+
         return services;
     }
 

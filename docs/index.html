@@ -316,19 +316,21 @@
                                 class="fa-solid fa-bolt text-purple-400 mr-2"></i>2. Send via Interlink</span>
                     </div>
                     <div class="p-6 overflow-x-auto">
-                        <pre class="text-xs text-slate-300 leading-relaxed"><code><span class="text-indigo-400">[ApiController]</span>
-<span class="text-indigo-400">[Route</span>(<span class="text-emerald-300">"api/users"</span>)<span class="text-indigo-400">]</span>
-<span class="text-indigo-400">public class</span> <span class="text-amber-300">UsersController</span>(<span class="text-emerald-400">ISender</span> sender) : ControllerBase
-{
-    <span class="text-indigo-400">[HttpGet</span>(<span class="text-emerald-300">"{id}"</span>)<span class="text-indigo-400">]</span>
-    <span class="text-indigo-400">public async</span> Task&lt;IActionResult&gt; Get(<span class="text-indigo-400">int</span> id)
+                        <pre class="text-xs text-slate-300 leading-relaxed"><code>
+    <span class="text-indigo-400">[ApiController]</span>
+    <span class="text-indigo-400">[Route</span>(<span class="text-emerald-300">"api/users"</span>)<span class="text-indigo-400">]</span>
+    <span class="text-indigo-400">public class</span> <span class="text-amber-300">UsersController</span>(<span class="text-emerald-400">IMediator</span> mediator) : ControllerBase
     {
-        <span class="text-indigo-400">var</span> query = <span class="text-indigo-400">new</span> <span class="text-amber-300">GetUserQuery</span>(id);
-        <span class="text-indigo-400">var</span> result = <span class="text-indigo-400">await</span> sender.Send(query);
-        
-        <span class="text-indigo-400">return</span> Ok(result);
+        <span class="text-indigo-400">[HttpGet</span>(<span class="text-emerald-300">"{id}"</span>)<span class="text-indigo-400">]</span>
+        <span class="text-indigo-400">public async</span> Task&lt;IActionResult&gt; Get(<span class="text-indigo-400">int</span> id)
+        {
+            <span class="text-indigo-400">var</span> query = <span class="text-indigo-400">new</span> <span class="text-amber-300">GetUserQuery</span>(id);
+            <span class="text-indigo-400">var</span> result = <span class="text-indigo-400">await</span> mediator.Send(query);
+
+            <span class="text-indigo-400">return</span> Ok(result);
+        }
     }
-}</code></pre>
+</code></pre>
                     </div>
                 </div>
             </div>
