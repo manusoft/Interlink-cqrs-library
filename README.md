@@ -32,6 +32,8 @@
 
 * 🧩 Simple mediator pattern for request/response
 * 🔁 Publish/Subscribe notification system
+* 🎯 Unified `IMediator` (combines `ISender` + `IPublisher`)
+* ⚪ `Unit` support for fire-and-forget / void commands (`IRequest` / `IRequest<Unit>`)
 * 🔧 Pipeline behaviors (logging, validation, etc.)
 * 🧠 Clean separation of concerns via handlers
 * 🪝 Dependency injection support out of the box
@@ -105,6 +107,7 @@ builder.Services.AddInterlinkAspNetCore();   // registers exception filter
 
 ### 1. Define a request and handler
 
+#### With response
 ```csharp
 using Interlink;
 using Interlink.Contracts;
@@ -124,6 +127,33 @@ public class GetAllPets
 }
 ```
 
+#### Without response (using Unit)
+```csharp
+using Interlink;
+using Interlink.Contracts;
+
+public class CreatePet
+{
+    public sealed record Command(string Name) : IRequest;   // or IRequest<Unit>
+
+    public sealed class Handler : IRequestHandler<Command, Unit>
+    {
+        public Task<Unit> Handle(Command request, CancellationToken cancellationToken)
+        {
+            // Save pet to database...
+            Console.WriteLine($"Pet '{request.Name}' created");
+
+            return Unit.Value;          // or Task.FromResult(Unit.Value)
+        }
+    }
+}
+```
+
+> **Note**  
+> - `IRequest` is equivalent to `IRequest<Unit>`.  
+> - Always return `Unit.Value` (or `Task.FromResult(Unit.Value)`) from handlers that produce no meaningful response.
+
+
 ### 2. Send the request
 
 ```csharp
@@ -137,8 +167,18 @@ public class PetController(IMediator mediator) : ControllerBase
         var pets = await mediator.Send(new GetAllPets.Query(), cancellationToken);
         return Ok(pets);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> CreatePet(string name, CancellationToken cancellationToken)
+    {
+        await mediator.Send(new CreatePet.Command(name), cancellationToken);
+        return NoContent();
+    }
+
 }
 ```
+
+You can also inject `ISender` if you only need request/response functionality.
 
 If no handler is registered, `Send` throws `HandlerNotFoundException`.
 
@@ -189,6 +229,8 @@ public class AccountService(IMediator mediator)
     }
 }
 ```
+
+You can also inject `IPublisher` if you only need notification publishing.
 
 ---
 
@@ -389,6 +431,9 @@ Produces diagnostic **ILINK001** (warning) when a type implements `IRequest<TRes
 ```csharp
 public interface IRequest<out TResponse> { }
 
+// Non-generic form (equivalent to IRequest<Unit>)
+public interface IRequest : IRequest<Unit> { }
+
 public interface IRequestHandler<in TRequest, TResponse>
     where TRequest : IRequest<TResponse>
 {
@@ -404,18 +449,43 @@ public interface INotificationHandler<in TNotification>
 }
 ```
 
-### Sender & Publisher
+### Unit
+
+```csharp
+/// <summary>
+/// Represents a void response. Use this when a request does not return a meaningful value.
+/// </summary>
+public readonly struct Unit : IEquatable<Unit>
+{
+    public static readonly Unit Value = default;
+    public static Task<Unit> Task => System.Threading.Tasks.Task.FromResult(Value);
+    ...
+}
+```
+
+- Prefer `IRequest` (or `IRequest<Unit>`) for commands that only perform an action.
+- Always return `Unit.Value` (or `Task.FromResult(Unit.Value)`) from the corresponding handler.
+
+### Sender, Publisher & Mediator
 
 ```csharp
 public interface ISender
 {
     Task<TResponse> Send<TResponse>(IRequest<TResponse> request, CancellationToken cancellationToken = default);
+    Task Send(IRequest request, CancellationToken cancellationToken = default);   // convenience for Unit
 }
 
 public interface IPublisher
 {
     Task Publish<TNotification>(TNotification notification, CancellationToken cancellationToken = default)
         where TNotification : INotification;
+}
+
+/// <summary>
+/// Unified mediator that combines request/response and notification publishing.
+/// </summary>
+public interface IMediator : ISender, IPublisher
+{
 }
 ```
 
@@ -459,11 +529,13 @@ public class HandlerNotFoundException : InvalidOperationException
 
 ## 🚀 Roadmap status
 
-| Version | Status   | Highlights                                              |
-|---------|----------|---------------------------------------------------------|
-| 1.0 – 1.3 | ✅ Released | Core mediator, notifications, pipelines, pre/post, performance |
-| 1.4     | ✅ Released | .NET Standard 2.0+                                      |
-| **1.5** | ✅ Current | Logging, Validation, ASP.NET Core, Analyzer, exceptions, ordering fixes |
+| Version   | Status     | Highlights                                                                 |
+|-----------|------------|----------------------------------------------------------------------------|
+| 1.0 – 1.3 | ✅ Released | Core mediator, notifications, pipelines, pre/post, performance             |
+| 1.4       | ✅ Released | .NET Standard 2.0+                                                         |
+| 1.5       | ✅ Released | Logging, Validation, ASP.NET Core, Analyzer, exceptions, ordering fixes    |
+| 1.5.1     | ✅ Released | `Unit` support for fire-and-forget / void commands (`IRequest` / `IRequest<Unit>`) |
+| **1.5.2** | ✅ Current  | Added unified `IMediator` interface (composes `ISender` + `IPublisher`)    |
 
 ### Future ideas
 

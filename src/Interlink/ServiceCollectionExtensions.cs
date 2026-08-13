@@ -59,17 +59,16 @@ public static class ServiceCollectionExtensions
         if (options.ServiceFactory is not null)
         {
             var factory = options.ServiceFactory;
-            services.AddScoped(sp => new Sender(sp, factory));
-            services.AddScoped(sp => new Publisher(sp, factory));
+            services.AddScoped<ISender>(sp => new Sender(sp, factory));
+            services.AddScoped<IPublisher>(sp => new Publisher(sp, factory));
         }
         else
         {
-            services.AddScoped<Sender>();
-            services.AddScoped<Publisher>();
+            services.AddScoped<ISender, Sender>();
+            services.AddScoped<IPublisher, Publisher>();
         }
 
-        services.AddScoped<ISender>(sp => sp.GetRequiredService<Sender>());
-        services.AddScoped<IPublisher>(sp => sp.GetRequiredService<Publisher>());
+        // Mediator (composes ISender + IPublisher)
         services.AddScoped<IMediator, Mediator>();
 
         return services;
